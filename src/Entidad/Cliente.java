@@ -19,12 +19,12 @@ public class Cliente implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int cedula;
-    private int telefono;
+    private double cedula;
+    private double telefono;
     private String direccion;
     private int num_Vehiculos;
 
-    Cliente(){}
+    public Cliente(){}
     
     public String getNombres() {
         return Nombres;
@@ -42,19 +42,19 @@ public class Cliente implements Serializable{
         this.Apellidos = Apellidos;
     }
 
-    public int getCedula() {
+    public double getCedula() {
         return cedula;
     }
 
-    public void setCedula(int identificacion) {
+    public void setCedula(double identificacion) {
         this.cedula = cedula;
     }
 
-    public int getTelefono() {
+    public double getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(double telefono) {
         this.telefono = telefono;
     }
 

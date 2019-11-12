@@ -1,9 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frontera;
+
+import DAO.ClienteDAO;
+import Entidad.Cliente;
 
 /**
  *
@@ -60,8 +59,18 @@ public class RegistroCliente extends javax.swing.JFrame {
         nombres_L.setText("Nombres:");
 
         registrarB.setText("Registrar");
+        registrarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarBActionPerformed(evt);
+            }
+        });
 
         cancelarB.setText("Cancelar");
+        cancelarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,6 +162,24 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registrarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBActionPerformed
+        Cliente cliente = new Cliente();
+        cliente.setNombres(nombresTF.getText());
+        cliente.setApellidos(apellidosTF.getText());
+        cliente.setCedula(Integer.parseInt(identificacionTF.getText()));
+        cliente.setTelefono(Integer.parseInt(telefonoTF.getText()));
+        cliente.setDireccion(direccionTF.getText());
+        cliente.setNum_Vehiculos(elegirNVehiculos.getSelectedIndex()+1);
+        ClienteDAO dao = new ClienteDAO();
+        dao.crear(cliente);                       
+    }//GEN-LAST:event_registrarBActionPerformed
+
+    private void cancelarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBActionPerformed
+        Menu obj = new Menu();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelarBActionPerformed
 
     /**
      * @param args the command line arguments
