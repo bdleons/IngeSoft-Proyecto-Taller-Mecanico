@@ -45,7 +45,7 @@ public class Cliente implements Serializable{
         return cedula;
     }
 
-    public void setCedula(double identificacion) {
+    public void setCedula(double cedula) {
         this.cedula = cedula;
     }
 
