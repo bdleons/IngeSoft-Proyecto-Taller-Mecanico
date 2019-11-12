@@ -3,6 +3,7 @@ package Frontera;
 
 import DAO.ClienteDAO;
 import Entidad.Cliente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +16,7 @@ public class RegistroCliente extends javax.swing.JFrame {
      */
     public RegistroCliente() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -172,7 +174,11 @@ public class RegistroCliente extends javax.swing.JFrame {
         cliente.setDireccion(direccionTF.getText());
         cliente.setNum_Vehiculos(elegirNVehiculos.getSelectedIndex()+1);
         ClienteDAO dao = new ClienteDAO();
-        dao.crear(cliente);                       
+        dao.crear(cliente);     
+        JOptionPane.showMessageDialog(null, "Cliente registrado");
+        Menu obj = new Menu();
+        obj.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_registrarBActionPerformed
 
     private void cancelarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBActionPerformed

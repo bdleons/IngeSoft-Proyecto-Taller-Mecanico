@@ -14,32 +14,31 @@ import javax.persistence.Table;
 @Entity
 @Table(name="clientes")
 public class Cliente implements Serializable{
-    private String Nombres;
-    private String Apellidos;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String nombres;
+    private String apellidos;
     private double cedula;
     private double telefono;
     private String direccion;
     private int num_Vehiculos;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     public Cliente(){}
     
     public String getNombres() {
-        return Nombres;
+        return nombres;
     }
 
-    public void setNombres(String Nombres) {
-        this.Nombres = Nombres;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
     public String getApellidos() {
-        return Apellidos;
+        return apellidos;
     }
 
-    public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public double getCedula() {

@@ -5,6 +5,8 @@
  */
 package Frontera;
 
+import DAO.ClienteDAO;
+
 /**
  *
  * @author Marcos
@@ -16,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -118,7 +121,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_registrarC_BActionPerformed
 
     private void DBC_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DBC_BActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_DBC_BActionPerformed
 
     /**
