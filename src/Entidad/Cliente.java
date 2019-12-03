@@ -24,6 +24,16 @@ public class Cliente implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     public Cliente(){}
+
+    public Cliente(int id, String nombres, String apellidos, long cedula, long telefono, String direccion, int num_Vehiculos) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.num_Vehiculos = num_Vehiculos;
+    }
     
     public String getNombres() {
         return nombres;
@@ -72,5 +82,19 @@ public class Cliente implements Serializable{
     public void setNum_Vehiculos(int num_Vehiculos) {
         this.num_Vehiculos = num_Vehiculos;
     } 
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }

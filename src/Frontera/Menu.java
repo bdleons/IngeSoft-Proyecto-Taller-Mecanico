@@ -134,7 +134,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_registrarC_BActionPerformed
 
     private void DBC_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DBC_BActionPerformed
-        
+        DBClientes obj = new DBClientes();
+        obj.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_DBC_BActionPerformed
 
     private void registrarP_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarP_BActionPerformed
