@@ -16,8 +16,8 @@ import javax.persistence.Table;
 public class Cliente implements Serializable{
     private String nombres;
     private String apellidos;
-    private double cedula;
-    private double telefono;
+    private long cedula;
+    private long telefono;
     private String direccion;
     private int num_Vehiculos;
     @Id
@@ -41,19 +41,19 @@ public class Cliente implements Serializable{
         this.apellidos = apellidos;
     }
 
-    public double getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
-    public void setCedula(double cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
 
-    public double getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(double telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 

@@ -3,6 +3,8 @@
   <persistence-unit name="SI_Taller_MecPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidad.Cliente</class>
+    <class>Entidad.Producto</class>
+    <class>Entidad.Vehiculo</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/SI_Taller_Mec"/>
       <property name="javax.persistence.jdbc.user" value="grupo3"/>

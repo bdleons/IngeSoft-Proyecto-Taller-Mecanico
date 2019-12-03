@@ -3,6 +3,7 @@ package Frontera;
 
 import DAO.ClienteDAO;
 import Entidad.Cliente;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author Marcos
  */
 public class RegistroCliente extends javax.swing.JFrame {
-
+    public static ArrayList <Cliente> clientes = new ArrayList<Cliente>(); 
     /**
      * Creates new form RegistroClientes
      */
@@ -174,9 +175,10 @@ public class RegistroCliente extends javax.swing.JFrame {
         cliente.setDireccion(direccionTF.getText());
         cliente.setNum_Vehiculos(elegirNVehiculos.getSelectedIndex()+1);
         ClienteDAO dao = new ClienteDAO();
-        dao.crear(cliente);     
-        JOptionPane.showMessageDialog(null, "Cliente registrado");
-        Menu obj = new Menu();
+        dao.crear(cliente); 
+        clientes.add(cliente);
+        JOptionPane.showMessageDialog(null, "Cliente registrado");        
+        RegistroVehiculo obj = new RegistroVehiculo();
         obj.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_registrarBActionPerformed

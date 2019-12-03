@@ -21,16 +21,16 @@ public class ValidarRegistroC {
     public ValidarRegistroC() {
     }
     
-    public boolean validarCedulaRepetido(double cedula){
+    public boolean validarCedulaRepetido(long cedula){
     for(Cliente u : clientdata.getClientes()){
             if(u.getCedula() == cedula){
-                return false; // en caso de que el cedula este repetido    
+                return false; // en caso de que el cedula este repetido                
             }
         }
     return true;
     }
     
-    public boolean verificarLongitudCedula (double cedula){
+    public boolean verificarLongitudCedula (long cedula){
         return (cedula > 999 && cedula <= 999999999); // tamaño de 4 a 9 digitos
     }
     
@@ -46,15 +46,15 @@ public class ValidarRegistroC {
         return (direccion.length() > 1 && direccion.length() <= 22);
     }
 
-    public boolean verificarLongitudTelefono (double telefono){
+    public boolean verificarLongitudTelefono (long telefono){
         return (telefono > 9999999 && telefono <= 9999999); // 7 digitos
     }    
     
     public String VerificarRegistro(Cliente clicach){
-        if(!validarCedulaRepetido(clicach.getCedula())){
+        if(!validarCedulaRepetido((long) clicach.getCedula())){
             return("La cedula ya está registrada");
         }
-        if(!verificarLongitudCedula(clicach.getCedula())){
+        if(!verificarLongitudCedula((long) clicach.getCedula())){
             return("La longitud de la cedula no es correcta");
         }
         if(!verificarLongitudNombres(clicach.getNombres())){
@@ -66,12 +66,12 @@ public class ValidarRegistroC {
         if(!verificarLongitudDireccion(clicach.getDireccion())){
             return("La longitud de la direccion no es correcta");
         }
-        if(!verificarLongitudTelefono(clicach.getTelefono())){
+        if(!verificarLongitudTelefono((long) clicach.getTelefono())){
             return("La longitud del telefono no es la correcta");
         }
         return("Usuario registrado con exito");
     }
     public boolean ExitoRegistro(Cliente clicach){
-        return(validarCedulaRepetido(clicach.getCedula()) && verificarLongitudApellidos(clicach.getApellidos()) && verificarLongitudCedula(clicach.getCedula()) && verificarLongitudNombres(clicach.getNombres()) && verificarLongitudDireccion(clicach.getDireccion()) && verificarLongitudTelefono(clicach.getTelefono()));
+        return(validarCedulaRepetido((long) clicach.getCedula()) && verificarLongitudApellidos(clicach.getApellidos()) && verificarLongitudCedula((long) clicach.getCedula()) && verificarLongitudNombres(clicach.getNombres()) && verificarLongitudDireccion(clicach.getDireccion()) && verificarLongitudTelefono((long) clicach.getTelefono()));
     }
 }
