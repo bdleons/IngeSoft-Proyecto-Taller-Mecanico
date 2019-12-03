@@ -18,6 +18,7 @@ public class Vehiculo {
     private String matricula;
     private String tipo_vehiculo;
     private String observaciones;
+    private long cedDueño;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,6 +62,17 @@ public class Vehiculo {
   
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    /**
+     * @return the cedDueño
+     */
+    public long getCedDueño() {
+        return cedDueño;
+    }
+
+    public void setCedDueño(long cedDueño) {
+        this.cedDueño = cedDueño;
     }
  
 }

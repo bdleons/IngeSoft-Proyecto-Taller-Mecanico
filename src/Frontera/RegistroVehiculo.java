@@ -174,6 +174,7 @@ public class RegistroVehiculo extends javax.swing.JFrame {
             vehiculo.setMatricula(matriculaTF.getText());
             vehiculo.setTipo_vehiculo((String) tipovCB.getSelectedItem());
             vehiculo.setObservaciones(observacionesTA.getText());
+            vehiculo.setCedDueño(RegistroCliente.clientes.get(0).getCedula());
             
             VehiculoDAO dao = new VehiculoDAO();
             dao.crear(vehiculo);     
