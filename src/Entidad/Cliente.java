@@ -1,6 +1,7 @@
 
 package Entidad;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Cliente implements Serializable{
     private long telefono;
     private String direccion;
     private int num_Vehiculos;
+    private ArrayList <Vehiculo> vehiculosCliente;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -82,6 +84,15 @@ public class Cliente implements Serializable{
     public void setNum_Vehiculos(int num_Vehiculos) {
         this.num_Vehiculos = num_Vehiculos;
     } 
+
+    public ArrayList<Vehiculo> getVehiculosCliente() {
+        return vehiculosCliente;
+    }
+
+    public void setVehiculosCliente(ArrayList<Vehiculo> vehiculosCliente) {
+        this.vehiculosCliente = vehiculosCliente;
+    }
+    
 
     /**
      * @return the id

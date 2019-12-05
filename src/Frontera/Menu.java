@@ -55,6 +55,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         DBV_B.setText("Database de vehículos");
+        DBV_B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DBV_BActionPerformed(evt);
+            }
+        });
 
         elijaL.setText("Elija la acción que desea ejecutar");
 
@@ -86,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(registrarP_B, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DBC_B, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                    .addComponent(DBC_B, javax.swing.GroupLayout.PREFERRED_SIZE, 149, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
                 .addComponent(DBV_B)
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -145,6 +150,13 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_registrarP_BActionPerformed
 
+    private void DBV_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DBV_BActionPerformed
+        // TODO add your handling code here:
+        BDVehiculos obj = new BDVehiculos();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_DBV_BActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -189,4 +201,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton registrarC_B;
     private javax.swing.JButton registrarP_B;
     // End of variables declaration//GEN-END:variables
+
 }
