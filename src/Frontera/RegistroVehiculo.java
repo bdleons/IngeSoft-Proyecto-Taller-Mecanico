@@ -5,6 +5,7 @@
  */
 package Frontera;
 
+import Control.ValidarRegistroV;
 import DAO.ClienteDAO;
 import DAO.VehiculoDAO;
 import Entidad.Cliente;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class RegistroVehiculo extends javax.swing.JFrame {
 
+    public static ArrayList <Vehiculo> vehiculo = new ArrayList<Vehiculo>(); 
     /**
      * Creates new form RegistroVehiculo
      */
@@ -168,24 +170,30 @@ public class RegistroVehiculo extends javax.swing.JFrame {
             vehiculo.setTipo_vehiculo((String) tipovCB.getSelectedItem());
             vehiculo.setObservaciones(observacionesTA.getText());
             vehiculo.setCedDueño(RegistroCliente.clientes.get(tam).getCedula());
+            
+            ValidarRegistroV verV = new ValidarRegistroV();
+            if(verV.VerificarVehiculo(vehiculo).equals("Exito en validar Vehiculo")){
+                VehiculoDAO dao = new VehiculoDAO();
+                dao.crear(vehiculo);  
+                RegistroVehiculo.vehiculo.add(vehiculo);
+                JOptionPane.showMessageDialog(null, "Vehículo registrado"); 
 
-            VehiculoDAO dao = new VehiculoDAO();
-            dao.crear(vehiculo);           
-            
-            JOptionPane.showMessageDialog(null, "Vehículo registrado");   
-            int msg = JOptionPane.showConfirmDialog(null, "¿Desea registrar otro vehículo?", "Opción de vehículo", JOptionPane.YES_NO_OPTION);
-            
-            if(msg == JOptionPane.YES_OPTION){
-                RegistroVehiculo obj = new RegistroVehiculo();
-                obj.setVisible(true);
-                this.dispose();
+                int msg = JOptionPane.showConfirmDialog(null, "¿Desea registrar otro vehículo?", "Opción de vehículo", JOptionPane.YES_NO_OPTION);
+
+                if(msg == JOptionPane.YES_OPTION){
+                    RegistroVehiculo obj = new RegistroVehiculo();
+                    obj.setVisible(true);
+                    this.dispose();
+                }
+                if(msg == JOptionPane.NO_OPTION){
+                    Menu obj = new Menu();
+                    obj.setVisible(true);
+                    this.dispose();
+                }   
             }
-            if(msg == JOptionPane.NO_OPTION){
-                Menu obj = new Menu();
-                obj.setVisible(true);
-                this.dispose();
-            }   
-   
+            else{
+                JOptionPane.showMessageDialog(null, verV.VerificarVehiculo(vehiculo)); 
+            }
     }//GEN-LAST:event_registrarBActionPerformed
 
     /**

@@ -8,6 +8,7 @@ package Control;
 import Entidad.Cliente;
 import Entidad.Vehiculo;
 import static Frontera.RegistroCliente.clientes;
+import static Frontera.RegistroVehiculo.vehiculo;
 
 /**
  *
@@ -18,10 +19,19 @@ public class ValidarRegistroV {
     public ValidarRegistroV() {
     }
     
-    public boolean validarExitenciaCliente(long cedula){
+    /*public boolean validarExitenciaCliente(long cedula){
     for(Cliente u : clientes ){
             if(u.getCedula() == cedula){
                 return true; // en caso de que la cedula exista                
+            }
+        }
+    return false;
+    }*/
+    
+    public boolean validarExitenciaMatricula(String matricula){
+    for(Vehiculo u : vehiculo ){
+            if(!u.getMatricula().equals(matricula)){
+                return true; // en caso de que la matricula exista                
             }
         }
     return false;
@@ -35,8 +45,11 @@ public class ValidarRegistroV {
     }
     
     public String VerificarVehiculo(Vehiculo veh_cache){
-        if(!validarExitenciaCliente(veh_cache.getCedDueño())){
+        /*if(!validarExitenciaCliente(veh_cache.getCedDueño())){
             return("El cliente no existe");
+        }*/
+        if(!validarExitenciaMatricula(veh_cache.getMatricula())){
+            return("El vehículo ya está registrado");
         }
         if(!validarLongitudMatricula(veh_cache.getMatricula())){
             return("Longitud matricula incorrecta");

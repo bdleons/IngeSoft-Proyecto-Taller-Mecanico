@@ -165,7 +165,7 @@ public class RegistroCliente extends javax.swing.JFrame {
             ClienteDAO dao = new ClienteDAO();
             dao.crear(cliente); 
             clientes.add(cliente);                     
-             JOptionPane.showMessageDialog(null, "Usuario registrado con exito"); 
+            JOptionPane.showMessageDialog(null, "Usuario registrado con exito"); 
             RegistroVehiculo obj = new RegistroVehiculo();
             obj.setVisible(true);
             this.dispose();
