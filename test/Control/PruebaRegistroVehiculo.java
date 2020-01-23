@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Entidad.Vehiculo;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,6 +19,11 @@ import static org.junit.Assert.*;
  */
 public class PruebaRegistroVehiculo {
     
+    private static ValidarRegistroV validar = new ValidarRegistroV(); 
+    
+    private String LONG_MATRICULA_INCORRECTO = "Longitud matricula incorrecta";
+    private String CLIENTE_NO_EXISTE = "El cliente no existe";
+    private String EXITO_VALIDAR = "Exito en validar Vehiculo";
     public PruebaRegistroVehiculo() {
     }
     
@@ -40,6 +46,28 @@ public class PruebaRegistroVehiculo {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void ValidarMatricula() {
+    
+        Vehiculo veh_cache = new Vehiculo();
+        veh_cache.setCedDueño(1234567);
+        veh_cache.setMatricula("JGS3453");
+        assertEquals(validar.VerificarVehiculo(veh_cache),LONG_MATRICULA_INCORRECTO);
+    }
+       @Test
+    public void ValidarCliente() {
+    
+        Vehiculo veh_cache = new Vehiculo();
+        veh_cache.setCedDueño(1234569);
+        veh_cache.setMatricula("JGS345");
+        assertEquals(validar.VerificarVehiculo(veh_cache),CLIENTE_NO_EXISTE);
+    }
+       @Test
+    public void ValidarExito() {
+    
+        Vehiculo veh_cache = new Vehiculo();
+        veh_cache.setCedDueño(1234567);
+        veh_cache.setMatricula("JGS345");
+        assertEquals(validar.VerificarVehiculo(veh_cache),EXITO_VALIDAR);
+    }
 }

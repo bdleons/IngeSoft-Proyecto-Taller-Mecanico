@@ -5,18 +5,42 @@
  */
 package Control;
 
+import Entidad.Cliente;
+import Entidad.Vehiculo;
+import static Frontera.RegistroCliente.clientes;
+
 /**
  *
  * @author Marcos
  */
 public class ValidarRegistroV {
+
+    public ValidarRegistroV() {
+    }
     
-    /*public boolean validarCedulaRepetido(long cedula){
-    for(Vehiculo v : v.getClientes()){
+    public boolean validarExitenciaCliente(long cedula){
+    for(Cliente u : clientes ){
             if(u.getCedula() == cedula){
-                return false; // en caso de que el cedula este repetido                
+                return true; // en caso de que la cedula exista                
             }
         }
-    return true;
-    }*/
+    return false;
+    }
+    
+    public boolean validarLongitudMatricula(String matricula){
+        if(matricula.length()==6){
+            return true;
+        }
+        return false;
+    }
+    
+    public String VerificarVehiculo(Vehiculo veh_cache){
+        if(!validarExitenciaCliente(veh_cache.getCedDueño())){
+            return("El cliente no existe");
+        }
+        if(!validarLongitudMatricula(veh_cache.getMatricula())){
+            return("Longitud matricula incorrecta");
+        }
+        return("Exito en validar Vehiculo");
+    }
 }
