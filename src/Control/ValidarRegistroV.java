@@ -11,6 +11,4 @@ package Control;
  */
 public class ValidarRegistroV {
     
-    
-    
 }
