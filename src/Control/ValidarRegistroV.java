@@ -11,4 +11,12 @@ package Control;
  */
 public class ValidarRegistroV {
     
+    /*public boolean validarCedulaRepetido(long cedula){
+    for(Vehiculo v : v.getClientes()){
+            if(u.getCedula() == cedula){
+                return false; // en caso de que el cedula este repetido                
+            }
+        }
+    return true;
+    }*/
 }

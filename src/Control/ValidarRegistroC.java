@@ -8,6 +8,7 @@ package Control;
 
 import Entidad.Cdata;
 import Entidad.Cliente;
+import Frontera.RegistroCliente;
 
 
 /**
@@ -16,16 +17,16 @@ import Entidad.Cliente;
  */
 public class ValidarRegistroC {
  
-    private Cdata clientdata = new Cdata();
+    //private Cdata clientdata = new Cdata();
 
     public ValidarRegistroC() {
     }
     
     public boolean validarCedulaRepetido(long cedula){
-    for(Cliente u : clientdata.getClientes()){
+    for(Cliente u : RegistroCliente.clientes /*clientdata.getClientes()*/){
             if(u.getCedula() == cedula){
                 return false; // en caso de que el cedula este repetido                
-            }
+            } 
         }
     return true;
     }
@@ -47,12 +48,12 @@ public class ValidarRegistroC {
     }
 
     public boolean verificarLongitudTelefono (long telefono){
-        return (telefono > 9999999 && telefono <= 9999999); // 7 digitos
+        return (telefono > 999999 && telefono <= 9999999); // 7 digitos
     }    
     
     public String VerificarRegistro(Cliente clicach){
         if(!validarCedulaRepetido((long) clicach.getCedula())){
-            return("La cedula ya está registrada");
+            return("La cedula ya está registrada");            
         }
         if(!verificarLongitudCedula((long) clicach.getCedula())){
             return("La longitud de la cedula no es correcta");

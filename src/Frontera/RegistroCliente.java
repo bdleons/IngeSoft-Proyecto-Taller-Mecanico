@@ -1,6 +1,7 @@
 
 package Frontera;
 
+import Control.ValidarRegistroC;
 import DAO.ClienteDAO;
 import Entidad.Cliente;
 import java.util.ArrayList;
@@ -155,17 +156,24 @@ public class RegistroCliente extends javax.swing.JFrame {
         Cliente cliente = new Cliente();
         cliente.setNombres(nombresTF.getText());
         cliente.setApellidos(apellidosTF.getText());
-        cliente.setCedula(Integer.parseInt(identificacionTF.getText()));
-        cliente.setTelefono(Integer.parseInt(telefonoTF.getText()));
+        cliente.setCedula(Long.parseLong(identificacionTF.getText()));
+        cliente.setTelefono(Long.parseLong(telefonoTF.getText()));
         cliente.setDireccion(direccionTF.getText());
+        ValidarRegistroC verC = new ValidarRegistroC();
+        //System.out.println(verC.VerificarRegistro(cliente)); <<Banderilla
+        if(verC.VerificarRegistro(cliente).equals("Usuario registrado con exito")){
+            ClienteDAO dao = new ClienteDAO();
+            dao.crear(cliente); 
+            clientes.add(cliente);                     
+             JOptionPane.showMessageDialog(null, "Usuario registrado con exito"); 
+            RegistroVehiculo obj = new RegistroVehiculo();
+            obj.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, verC.VerificarRegistro(cliente));              
+        }
         
-        ClienteDAO dao = new ClienteDAO();
-        dao.crear(cliente); 
-        clientes.add(cliente);       
-        JOptionPane.showMessageDialog(null, "Cliente registrado");        
-        RegistroVehiculo obj = new RegistroVehiculo();
-        obj.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_registrarBActionPerformed
 
     private void cancelarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBActionPerformed

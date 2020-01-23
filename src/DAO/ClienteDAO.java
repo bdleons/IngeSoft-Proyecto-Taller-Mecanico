@@ -45,7 +45,7 @@ public class ClienteDAO {
             return ret;
         }
     }
-    
+    //Implementar para que lea en la DB
     /*public Cliente leer(Cliente par){
         EntityManager em = emf.createEntityManager();
         Cliente cliente = null;
@@ -61,7 +61,6 @@ public class ClienteDAO {
                 .setParameter("cedula", par.getCedula())
                 .setParameter("telefono", par.getTelefono())
                 .setParameter("direccion", par.getDireccion())
-                .setParameter("num_Vehiculos", par.getNum_Vehiculos());
         try{
             cliente = (Cliente) q.getSingleResult();
         }catch (NonUniqueResultException e){
