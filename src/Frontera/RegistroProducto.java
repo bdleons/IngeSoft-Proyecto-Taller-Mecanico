@@ -5,6 +5,7 @@
  */
 package Frontera;
 
+import Control.ValidarRegistroP;
 import DAO.ProductoDAO;
 import Entidad.Producto;
 import javax.swing.JOptionPane;
@@ -136,12 +137,18 @@ public class RegistroProducto extends javax.swing.JFrame {
         producto.setNombre(nombreTF.getText());
         producto.setCantidad(Integer.parseInt(cantidadTF.getText()));               
         ProductoDAO dao = new ProductoDAO();
+        ValidarRegistroP verP = new ValidarRegistroP();
+        if (verP.VerificarProducto(producto).equals("Producto correcto")){
+            dao.crear(producto);     
+            JOptionPane.showMessageDialog(null, "Producto registrado");
+            Menu obj = new Menu();
+            obj.setVisible(true);
+            this.dispose();
+        }
+        else{
+           JOptionPane.showMessageDialog(null, verP.VerificarProducto(producto)); 
+        }
         
-        dao.crear(producto);     
-        JOptionPane.showMessageDialog(null, "Producto registrado");
-        Menu obj = new Menu();
-        obj.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_registrarBActionPerformed
 
     private void cancelarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBActionPerformed

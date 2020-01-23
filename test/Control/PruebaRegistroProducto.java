@@ -55,7 +55,7 @@ public class PruebaRegistroProducto {
         
         Producto productcache = new Producto();
         productcache.setCantidad(5);
-        productcache.setCodigo(999999);
+        productcache.setCodigo(99);
         productcache.setNombre("chocorramo");
         assertEquals(validar.VerificarProducto(productcache), LONG_CODIGO_INCORRECTO);
     }
@@ -71,8 +71,8 @@ public class PruebaRegistroProducto {
     public void Exito(){
         Producto productcache = new Producto();
         productcache.setCantidad(5);
-        productcache.setCodigo(9999999);
-        productcache.setNombre("chocorramo");
-        assertEquals(validar.VerificarProducto(productcache), EXITO_VALIDAR);
+        productcache.setCodigo(999999);
+        productcache.setNombre("chocor");
+        assertEquals(EXITO_VALIDAR,validar.VerificarProducto(productcache));
     }
 }

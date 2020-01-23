@@ -7,8 +7,9 @@ package Control;
 
 import Control.ValidarRegistroC;
 import DAO.ClienteDAO;
-
+import Frontera.RegistroCliente;
 import Entidad.Cliente;
+import static Frontera.RegistroCliente.clientes;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -30,7 +31,7 @@ public class PruebaRegistroCliente {
     private String LONG_CEDULA_INCORRECTA = "La longitud de la cedula no es correcta";
     private String LONG_DIRECCION_INCORRECTA = "La longitud de la direccion no es correcta";        
     private String LONG_TELEFONO_INCORRECTA = "La longitud del telefono no es la correcta";   
-    private String DISPONIBILIDAD_CEDULA = "La cedula ya está registrada";
+    private String DISPONIBILIDAD_CEDULA = "La cedula ya esta registrada";
     private String CASO_EXITOSO = "Usuario registrado con exito"; 
     public PruebaRegistroCliente() {
     }
@@ -38,8 +39,8 @@ public class PruebaRegistroCliente {
     @BeforeClass
     public static void setUpClass() {
    
-    ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-   ClienteDAO dao = new ClienteDAO();
+   //ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    ClienteDAO dao = new ClienteDAO();
     // Creacion usuarios
     Cliente a = new Cliente();
     Cliente b = new Cliente();
@@ -52,13 +53,15 @@ public class PruebaRegistroCliente {
     a.setTelefono(1234567);
     a.setCedula(1234567);
     
-    a.setNombres("Diana");
-    a.setApellidos("Hernandez");
-    a.setDireccion("calle y carrera");
-    a.setTelefono(7654321);
-    a.setCedula(7654321);
-    
     clientes.add(a);
+    
+    b.setNombres("Diana");
+    b.setApellidos("Hernandez");
+    b.setDireccion("calle y carrera");
+    b.setTelefono(7654321);
+    b.setCedula(7654321);
+    
+    
     clientes.add(b);
   
        for(Cliente u: clientes){
@@ -177,7 +180,7 @@ public class PruebaRegistroCliente {
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52 ");
         u.setTelefono(1234567);
-        u.setCedula(123457);       
+        u.setCedula(1234567);       
         assertEquals(validarRegistro.VerificarRegistro(u), DISPONIBILIDAD_CEDULA);
     }
     @Test

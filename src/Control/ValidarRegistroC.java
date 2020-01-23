@@ -53,7 +53,7 @@ public class ValidarRegistroC {
     
     public String VerificarRegistro(Cliente clicach){
         if(!validarCedulaRepetido((long) clicach.getCedula())){
-            return("La cedula ya está registrada");            
+            return("La cedula ya esta registrada");            
         }
         if(!verificarLongitudCedula((long) clicach.getCedula())){
             return("La longitud de la cedula no es correcta");

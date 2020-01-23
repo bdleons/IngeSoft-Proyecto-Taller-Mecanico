@@ -17,17 +17,17 @@ public class ValidarRegistroP {
     }
     
     public boolean validarLongitudCodigo(int product){
-        if(product <999999 && product >= 9999999){
-            return false;
+        if(product >9999 && product <= 9999999){
+            return true;
         }
-        return true;
+        return false;
     }
     
     public boolean validarLongitudNombre(String product){
-        if(product.length() <2 && product.length() > 45){
-            return false;
+        if(product.length() >=2 && product.length() <= 15){
+            return true;
         }
-        return true;
+        return false;
     }
     
     public String VerificarProducto(Producto productocache){

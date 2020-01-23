@@ -6,10 +6,10 @@
     <class>Entidad.Producto</class>
     <class>Entidad.Vehiculo</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/SI_Taller_Mec"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/SI_MEC"/>
       <property name="javax.persistence.jdbc.user" value="grupo3"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.password" value="123456"/>
+      <property name="javax.persistence.jdbc.password" value="451223"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>

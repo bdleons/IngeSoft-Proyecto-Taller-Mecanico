@@ -5,7 +5,9 @@
  */
 package Control;
 
+import Entidad.Cliente;
 import Entidad.Vehiculo;
+import static Frontera.RegistroCliente.clientes;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,11 +26,20 @@ public class PruebaRegistroVehiculo {
     private String LONG_MATRICULA_INCORRECTO = "Longitud matricula incorrecta";
     private String CLIENTE_NO_EXISTE = "El cliente no existe";
     private String EXITO_VALIDAR = "Exito en validar Vehiculo";
+    
+    
     public PruebaRegistroVehiculo() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        Cliente a = new Cliente();
+    a.setNombres("Juan");
+    a.setApellidos("Mendoza");
+    a.setDireccion("calle y carrera");
+    a.setTelefono(1234567);
+    a.setCedula(1234567);
+    clientes.add(a);
     }
     
     @AfterClass
