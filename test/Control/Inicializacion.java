@@ -61,14 +61,12 @@ public class Inicializacion {
     a.setDireccion("calle y carrera");
     a.setTelefono(1234567);
     a.setCedula(1234567);
-    a.setNum_Vehiculos(2);
     
     a.setNombres("Diana");
     a.setApellidos("Hernandez");
     a.setDireccion("calle y carrera");
     a.setTelefono(7654321);
     a.setCedula(7654321);
-    a.setNum_Vehiculos(3); 
     
     clientes.add(a);
     clientes.add(b);
@@ -78,7 +76,6 @@ public class Inicializacion {
             System.out.println(u.getApellidos());
             System.out.println(u.getDireccion());
             System.out.println(u.getTelefono());
-            System.out.println(u.getNum_Vehiculos());
             System.out.println(u.getCedula());
             System.out.println("----------------");
             dao.crear(u);

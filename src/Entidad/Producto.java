@@ -16,7 +16,8 @@ import javax.persistence.Table;
 public class Producto {
     private String nombre;
     private int cantidad;
-    private int codigo;
+    private int codigo; //deuda técnica - manejo de excepciones, no necesidad de implementación DB en GUI
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

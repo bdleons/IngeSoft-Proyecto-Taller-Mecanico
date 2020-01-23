@@ -46,7 +46,7 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente leer(Cliente par){
+    /*public Cliente leer(Cliente par){
         EntityManager em = emf.createEntityManager();
         Cliente cliente = null;
         Query q = em.createQuery("SELECT c FROM Cliente c "+
@@ -96,5 +96,5 @@ public class ClienteDAO {
             em.close();
             return ret;
         }
-    }
+    }*/
 }

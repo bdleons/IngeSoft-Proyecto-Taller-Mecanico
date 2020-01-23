@@ -30,8 +30,6 @@ public class RegistroCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        elegirNVehiculos = new javax.swing.JComboBox<>();
-        nVehiculos_L = new javax.swing.JLabel();
         direccion_L = new javax.swing.JLabel();
         direccionTF = new javax.swing.JTextField();
         telefonoTF = new javax.swing.JTextField();
@@ -46,10 +44,6 @@ public class RegistroCliente extends javax.swing.JFrame {
         cancelarB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        elegirNVehiculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-
-        nVehiculos_L.setText("Número de vehículos a registrar:");
 
         direccion_L.setText("Dirección:");
 
@@ -81,36 +75,31 @@ public class RegistroCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nVehiculos_L)
+                        .addComponent(cancelarB)
                         .addGap(18, 18, 18)
-                        .addComponent(elegirNVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombres_L)
-                            .addComponent(apellidos_L))
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nombresTF)
-                            .addComponent(apellidosTF, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(identificacion_L)
-                            .addComponent(telefono_L)
-                            .addComponent(direccion_L))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(identificacionTF)
-                            .addComponent(telefonoTF)
-                            .addComponent(direccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(113, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelarB)
-                .addGap(18, 18, 18)
-                .addComponent(registrarB)
-                .addGap(21, 21, 21))
+                        .addComponent(registrarB))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nombres_L)
+                                .addComponent(apellidos_L))
+                            .addGap(41, 41, 41)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nombresTF)
+                                .addComponent(apellidosTF, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(identificacion_L)
+                                .addComponent(telefono_L)
+                                .addComponent(direccion_L))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(identificacionTF)
+                                .addComponent(telefonoTF)
+                                .addComponent(direccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,15 +124,11 @@ public class RegistroCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(direccion_L)
                     .addComponent(direccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(elegirNVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nVehiculos_L))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrarB)
                     .addComponent(cancelarB))
-                .addGap(23, 23, 23))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,10 +158,10 @@ public class RegistroCliente extends javax.swing.JFrame {
         cliente.setCedula(Integer.parseInt(identificacionTF.getText()));
         cliente.setTelefono(Integer.parseInt(telefonoTF.getText()));
         cliente.setDireccion(direccionTF.getText());
-        cliente.setNum_Vehiculos(elegirNVehiculos.getSelectedIndex()+1);
+        
         ClienteDAO dao = new ClienteDAO();
         dao.crear(cliente); 
-        clientes.add(cliente);
+        clientes.add(cliente);       
         JOptionPane.showMessageDialog(null, "Cliente registrado");        
         RegistroVehiculo obj = new RegistroVehiculo();
         obj.setVisible(true);
@@ -231,11 +216,9 @@ public class RegistroCliente extends javax.swing.JFrame {
     private javax.swing.JButton cancelarB;
     private javax.swing.JTextField direccionTF;
     private javax.swing.JLabel direccion_L;
-    private javax.swing.JComboBox<String> elegirNVehiculos;
     private javax.swing.JTextField identificacionTF;
     private javax.swing.JLabel identificacion_L;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel nVehiculos_L;
     private javax.swing.JTextField nombresTF;
     private javax.swing.JLabel nombres_L;
     private javax.swing.JButton registrarB;

@@ -51,14 +51,12 @@ public class PruebaRegistroCliente {
     a.setDireccion("calle y carrera");
     a.setTelefono(1234567);
     a.setCedula(1234567);
-    a.setNum_Vehiculos(2);
     
     a.setNombres("Diana");
     a.setApellidos("Hernandez");
     a.setDireccion("calle y carrera");
     a.setTelefono(7654321);
     a.setCedula(7654321);
-    a.setNum_Vehiculos(3); 
     
     clientes.add(a);
     clientes.add(b);
@@ -68,7 +66,6 @@ public class PruebaRegistroCliente {
             System.out.println(u.getApellidos());
             System.out.println(u.getDireccion());
             System.out.println(u.getTelefono());
-            System.out.println(u.getNum_Vehiculos());
             System.out.println(u.getCedula());
             System.out.println("----------------");
             dao.crear(u);
@@ -99,15 +96,13 @@ public class PruebaRegistroCliente {
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52 ");
         u.setTelefono(1234567);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123458);      
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_NOMBRE_INCORRECTA);
         u.setNombres("Ryugunothwer Misinjawer");
         u.setApellidos("Mendoza");
         u.setDireccion("calle y carrera");
         u.setTelefono(1234567);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123458);      
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_NOMBRE_INCORRECTA);
     }
       @Test
@@ -117,15 +112,13 @@ public class PruebaRegistroCliente {
         u.setApellidos("M");
         u.setDireccion("calle 52 ");
         u.setTelefono(1234567);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123458);      
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_APELLIDO_INCORRECTA);
         u.setNombres("Juan");
         u.setApellidos("Mendoza de la rosa de San Francisco");
         u.setDireccion("calle 52 ");
         u.setTelefono(1234567);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123458);      
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_APELLIDO_INCORRECTA);
     }   
          @Test
@@ -135,15 +128,13 @@ public class PruebaRegistroCliente {
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52 a bis a carrera 99  b - 55");
         u.setTelefono(1234567);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123458);      
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_DIRECCION_INCORRECTA);
         u.setNombres("Juan");
         u.setApellidos("Mendoza");
         u.setDireccion("c");
         u.setTelefono(1234567);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123458);      
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_DIRECCION_INCORRECTA);
     }   
              @Test
@@ -153,15 +144,13 @@ public class PruebaRegistroCliente {
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52 ");
         u.setTelefono(123457);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123458);    
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_TELEFONO_INCORRECTA);
         u.setNombres("Juan");
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52");
         u.setTelefono(12345667);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123458);      
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_TELEFONO_INCORRECTA);
     }   
     @Test
@@ -171,15 +160,13 @@ public class PruebaRegistroCliente {
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52 ");
         u.setTelefono(1234567);
-        u.setCedula(123);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123);      
         assertEquals(validarRegistro.VerificarRegistro(u), LONG_CEDULA_INCORRECTA);
         u.setNombres("Juan");
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52");
         u.setTelefono(1234567);
-        u.setCedula(1234588165);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(1234588165);     
         assertEquals(validarRegistro.VerificarRegistro(u),LONG_CEDULA_INCORRECTA );
 
     }  
@@ -190,8 +177,7 @@ public class PruebaRegistroCliente {
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52 ");
         u.setTelefono(1234567);
-        u.setCedula(123457);
-        u.setNum_Vehiculos(2);       
+        u.setCedula(123457);       
         assertEquals(validarRegistro.VerificarRegistro(u), DISPONIBILIDAD_CEDULA);
     }
     @Test
@@ -201,8 +187,7 @@ public class PruebaRegistroCliente {
         u.setApellidos("Mendoza");
         u.setDireccion("calle 52 ");
         u.setTelefono(1234567);
-        u.setCedula(123458);
-        u.setNum_Vehiculos(3);       
+        u.setCedula(123458);      
         assertEquals(validarRegistro.VerificarRegistro(u), CASO_EXITOSO);
     }
 }

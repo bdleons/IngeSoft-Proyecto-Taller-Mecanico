@@ -5,8 +5,11 @@
  */
 package Frontera;
 
+import DAO.ClienteDAO;
 import DAO.VehiculoDAO;
+import Entidad.Cliente;
 import Entidad.Vehiculo;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,16 +18,6 @@ import javax.swing.JOptionPane;
  */
 public class RegistroVehiculo extends javax.swing.JFrame {
 
-   
-    private int i = RegistroCliente.clientes.get(0).getNum_Vehiculos();
-    
-    public int getI() {
-        return i;
-    }
-
-    public void setI(int i) {
-        this.i = i;
-    }
     /**
      * Creates new form RegistroVehiculo
      */
@@ -168,29 +161,31 @@ public class RegistroVehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_matriculaTFActionPerformed
 
     private void registrarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBActionPerformed
-            if(getI() !=0){
+            int tam = RegistroCliente.clientes.size()-1;
             Vehiculo vehiculo = new Vehiculo();
             vehiculo.setModelo(modeloTF.getText());
             vehiculo.setMatricula(matriculaTF.getText());
             vehiculo.setTipo_vehiculo((String) tipovCB.getSelectedItem());
             vehiculo.setObservaciones(observacionesTA.getText());
-            vehiculo.setCedDueño(RegistroCliente.clientes.get(0).getCedula());
-            
+            vehiculo.setCedDueño(RegistroCliente.clientes.get(tam).getCedula());
+
             VehiculoDAO dao = new VehiculoDAO();
-            dao.crear(vehiculo);     
-            JOptionPane.showMessageDialog(null, "Vehículo registrado" + getI());
-            setI(getI() - 1);
-            RegistroVehiculo obj = new RegistroVehiculo();
-            obj.setVisible(true);
-            this.dispose();            
-            }else{
-            JOptionPane.showMessageDialog(null, "Se han registrado los "+ getI() +" vehículos");
-            RegistroCliente.clientes.remove(0);
-            Menu obj = new Menu();
-            obj.setVisible(true);
-            this.dispose();
+            dao.crear(vehiculo);           
+            
+            JOptionPane.showMessageDialog(null, "Vehículo registrado");   
+            int msg = JOptionPane.showConfirmDialog(null, "¿Desea registrar otro vehículo?", "Opción de vehículo", JOptionPane.YES_NO_OPTION);
+            
+            if(msg == JOptionPane.YES_OPTION){
+                RegistroVehiculo obj = new RegistroVehiculo();
+                obj.setVisible(true);
+                this.dispose();
             }
-        
+            if(msg == JOptionPane.NO_OPTION){
+                Menu obj = new Menu();
+                obj.setVisible(true);
+                this.dispose();
+            }   
+   
     }//GEN-LAST:event_registrarBActionPerformed
 
     /**
