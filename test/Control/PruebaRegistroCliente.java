@@ -7,7 +7,7 @@ package Control;
 
 import Control.ValidarRegistroC;
 import DAO.ClienteDAO;
-import Frontera.RegistroCliente;
+
 import Entidad.Cliente;
 import static Frontera.RegistroCliente.clientes;
 import java.util.ArrayList;
@@ -39,8 +39,8 @@ public class PruebaRegistroCliente {
     @BeforeClass
     public static void setUpClass() {
    
-   //ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    ClienteDAO dao = new ClienteDAO();
+  //  ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+   ClienteDAO dao = new ClienteDAO();
     // Creacion usuarios
     Cliente a = new Cliente();
     Cliente b = new Cliente();
@@ -61,7 +61,7 @@ public class PruebaRegistroCliente {
     b.setTelefono(7654321);
     b.setCedula(7654321);
     
-    
+   // clientes.add(a);
     clientes.add(b);
   
        for(Cliente u: clientes){

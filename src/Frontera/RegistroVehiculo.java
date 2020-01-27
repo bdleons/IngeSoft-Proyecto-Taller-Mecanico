@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class RegistroVehiculo extends javax.swing.JFrame {
 
-    public static ArrayList <Vehiculo> vehiculo = new ArrayList<Vehiculo>(); 
+    //public static ArrayList <Vehiculo> vehiculo = new ArrayList<Vehiculo>(); 
     /**
      * Creates new form RegistroVehiculo
      */
@@ -175,7 +175,7 @@ public class RegistroVehiculo extends javax.swing.JFrame {
             if(verV.VerificarVehiculo(vehiculo).equals("Exito en validar Vehiculo")){
                 VehiculoDAO dao = new VehiculoDAO();
                 dao.crear(vehiculo);  
-                RegistroVehiculo.vehiculo.add(vehiculo);
+                //RegistroVehiculo.vehiculo.add(vehiculo);
                 JOptionPane.showMessageDialog(null, "Vehículo registrado"); 
 
                 int msg = JOptionPane.showConfirmDialog(null, "¿Desea registrar otro vehículo?", "Opción de vehículo", JOptionPane.YES_NO_OPTION);

@@ -8,7 +8,9 @@ package DAO;
 import Entidad.Vehiculo;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -46,6 +48,23 @@ public class VehiculoDAO {
         }finally{
             em.close();
             return ret;
+        }
+    }
+    public Vehiculo leer(Vehiculo par) {
+        EntityManager em = emf.createEntityManager();
+        Vehiculo vehiculo = null;       
+        Query q = em.createQuery(" SELECT v FROM Vehiculo v " + 
+                " WHERE v.matricula LIKE :matricula")                          
+                .setParameter("matricula", par.getMatricula());        
+        try {
+            vehiculo = (Vehiculo) q.getSingleResult();            
+        } catch (NonUniqueResultException e) {
+            vehiculo = (Vehiculo) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return vehiculo;
         }
     }
 }

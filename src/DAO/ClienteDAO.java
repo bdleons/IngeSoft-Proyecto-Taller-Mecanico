@@ -45,29 +45,19 @@ public class ClienteDAO {
             return ret;
         }
     }
-    //Implementar para que lea en la DB
-    /*public Cliente leer(Cliente par){
+    public Cliente leer(Cliente par) {
         EntityManager em = emf.createEntityManager();
-        Cliente cliente = null;
-        Query q = em.createQuery("SELECT c FROM Cliente c "+
-                "WHERE c.nombres LIKE :nombres" +
-                "AND c.apellidos LIKE :apellidos"+
-                "AND c.cedula LIKE :cedula" +
-                "AND c.telefono LIKE :telefono" +
-                "AND c.direccion LIKE : direccion" +
-                "AND c.num_Vehiculos LIKE :num_Vehiculos")
-                .setParameter("nombres", par.getNombres())
-                .setParameter("apellidos", par.getApellidos())
-                .setParameter("cedula", par.getCedula())
-                .setParameter("telefono", par.getTelefono())
-                .setParameter("direccion", par.getDireccion())
-        try{
-            cliente = (Cliente) q.getSingleResult();
-        }catch (NonUniqueResultException e){
+        Cliente cliente = null;       
+        Query q = em.createQuery(" SELECT u FROM Cliente u " + 
+                " WHERE u.cedula = :cedula")        // se cambia 'LIKE' por '=' porque el primero parece sólo funcionar con parámetros enteros.                        
+                .setParameter("cedula", par.getCedula());        
+        try {
+            cliente = (Cliente) q.getSingleResult();            
+        } catch (NonUniqueResultException e) {
             cliente = (Cliente) q.getResultList().get(0);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             em.close();
             return cliente;
         }
@@ -81,10 +71,9 @@ public class ClienteDAO {
             obj = leer(obj);
             obj.setNombres(nuevoObj.getNombres());
             obj.setApellidos(nuevoObj.getApellidos());
-            obj.setCedula(nuevoObj.getCedula());
+            obj.setCedula(obj.getCedula()); //deja la misma cédula para evitar conflictos
             obj.setTelefono(nuevoObj.getTelefono());
-            obj.setDireccion(nuevoObj.getDireccion());
-            obj.setNum_Vehiculos(nuevoObj.getNum_Vehiculos());
+            obj.setDireccion(nuevoObj.getDireccion());            
             em.merge(obj);
             em.getTransaction().commit();
             ret = true;
@@ -95,5 +84,6 @@ public class ClienteDAO {
             em.close();
             return ret;
         }
-    }*/
+    }
+    
 }

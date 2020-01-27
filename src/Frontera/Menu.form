@@ -34,8 +34,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,14 +50,20 @@
                   <EmptySpace pref="22" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="registrarC_B" min="-2" pref="141" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                          <Component id="registrarP_B" min="-2" pref="149" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
                           <Component id="bienvenidoL" min="-2" pref="401" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="registrarC_B" pref="141" max="32767" attributes="0"/>
+                              <Component id="actualizarC_B" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="registrarP_B" max="32767" attributes="0"/>
+                              <Component id="actualizarP_B" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -77,10 +83,15 @@
                   <Component id="elijaL" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="registrarC_B" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                       <Component id="registrarP_B" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="registrarC_B" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="actualizarP_B" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="actualizarC_B" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -114,6 +125,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarP_BActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="actualizarC_B">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar info. cliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="actualizarP_B">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar info. Producto"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

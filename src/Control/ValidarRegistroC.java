@@ -6,6 +6,7 @@
 package Control;
 
 
+import DAO.ClienteDAO;
 import Entidad.Cdata;
 import Entidad.Cliente;
 import Frontera.RegistroCliente;
@@ -17,17 +18,19 @@ import Frontera.RegistroCliente;
  */
 public class ValidarRegistroC {
  
-    //private Cdata clientdata = new Cdata();
+    private ClienteDAO dao = new ClienteDAO();
 
     public ValidarRegistroC() {
     }
     
-    public boolean validarCedulaRepetido(long cedula){
-    for(Cliente u : RegistroCliente.clientes /*clientdata.getClientes()*/){
+    public boolean validarCedulaRepetido(/*long cedula*/Cliente client){
+    /*for(Cliente u : RegistroCliente.clientes ){
             if(u.getCedula() == cedula){
                 return false; // en caso de que el cedula este repetido                
             } 
-        }
+        }*/
+    if(dao.leer(client) != null)
+        return false;
     return true;
     }
     
@@ -52,7 +55,7 @@ public class ValidarRegistroC {
     }    
     
     public String VerificarRegistro(Cliente clicach){
-        if(!validarCedulaRepetido((long) clicach.getCedula())){
+        if(!validarCedulaRepetido(clicach)){
             return("La cedula ya esta registrada");            
         }
         if(!verificarLongitudCedula((long) clicach.getCedula())){
@@ -73,6 +76,6 @@ public class ValidarRegistroC {
         return("Usuario registrado con exito");
     }
     public boolean ExitoRegistro(Cliente clicach){
-        return(validarCedulaRepetido((long) clicach.getCedula()) && verificarLongitudApellidos(clicach.getApellidos()) && verificarLongitudCedula((long) clicach.getCedula()) && verificarLongitudNombres(clicach.getNombres()) && verificarLongitudDireccion(clicach.getDireccion()) && verificarLongitudTelefono((long) clicach.getTelefono()));
+        return(validarCedulaRepetido(clicach) && verificarLongitudApellidos(clicach.getApellidos()) && verificarLongitudCedula((long) clicach.getCedula()) && verificarLongitudNombres(clicach.getNombres()) && verificarLongitudDireccion(clicach.getDireccion()) && verificarLongitudTelefono((long) clicach.getTelefono()));
     }
 }

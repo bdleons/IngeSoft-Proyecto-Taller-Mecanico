@@ -24,7 +24,7 @@ public class Cliente implements Serializable{
     private int id;
     public Cliente(){}
 
-    public Cliente(int id, String nombres, String apellidos, long cedula, long telefono, String direccion, int num_Vehiculos) {
+    public Cliente(int id, String nombres, String apellidos, long cedula, long telefono, String direccion) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
