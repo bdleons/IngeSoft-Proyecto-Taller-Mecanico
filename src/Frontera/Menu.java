@@ -60,8 +60,18 @@ public class Menu extends javax.swing.JFrame {
         });
 
         actualizarC_B.setText("Actualizar info. cliente");
+        actualizarC_B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarC_BActionPerformed(evt);
+            }
+        });
 
         actualizarP_B.setText("Actualizar info. Producto");
+        actualizarP_B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarP_BActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,6 +146,18 @@ public class Menu extends javax.swing.JFrame {
         obj.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_registrarP_BActionPerformed
+
+    private void actualizarC_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarC_BActionPerformed
+        ActualizacionCliente obj = new ActualizacionCliente();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_actualizarC_BActionPerformed
+
+    private void actualizarP_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarP_BActionPerformed
+        ActualizacionProducto obj = new ActualizacionProducto();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_actualizarP_BActionPerformed
 
     /**
      * @param args the command line arguments

@@ -3,6 +3,7 @@ package DAO;
 import Entidad.Cliente;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -53,7 +54,28 @@ public class ClienteDAO {
                 .setParameter("cedula", par.getCedula());        
         try {
             cliente = (Cliente) q.getSingleResult();            
+        } catch (NoResultException e) {
+            return cliente;
         } catch (NonUniqueResultException e) {
+            cliente = (Cliente) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return cliente;
+        }
+    }
+    public Cliente leer(Long cedula) {
+        EntityManager em = emf.createEntityManager();
+        Cliente cliente = null;       
+        Query q = em.createQuery(" SELECT u FROM Cliente u " + 
+                " WHERE u.cedula = :cedula")        // se cambia 'LIKE' por '=' porque el primero parece sólo funcionar con parámetros enteros.                        
+                .setParameter("cedula", cedula);        
+        try {
+            cliente = (Cliente) q.getSingleResult();            
+        } catch (NoResultException e) {
+            return cliente;
+        }   catch (NonUniqueResultException e) {
             cliente = (Cliente) q.getResultList().get(0);
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,7 +93,7 @@ public class ClienteDAO {
             obj = leer(obj);
             obj.setNombres(nuevoObj.getNombres());
             obj.setApellidos(nuevoObj.getApellidos());
-            obj.setCedula(obj.getCedula()); //deja la misma cédula para evitar conflictos
+            obj.setCedula(nuevoObj.getCedula()); 
             obj.setTelefono(nuevoObj.getTelefono());
             obj.setDireccion(nuevoObj.getDireccion());            
             em.merge(obj);

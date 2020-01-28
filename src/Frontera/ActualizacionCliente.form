@@ -47,54 +47,65 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="cancelarB" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="actualizar_B" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="cancelarB" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="actualizar_B" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="identificacion_L" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="telefono_L" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="direccion_L" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="direccionTF" alignment="0" pref="226" max="32767" attributes="0"/>
+                                          <Component id="identificacionTF" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="telefonoTF" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="nombres_L" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="apellidos_L" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="nombresTF" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="apellidosTF" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nombres_L" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="apellidos_L" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="nombresTF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="apellidosTF" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="identificacion_L" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="telefono_L" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="direccion_L" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="identificacionTF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="telefonoTF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="direccionTF" alignment="0" min="-2" pref="226" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="actCed_TF" min="-2" pref="155" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="38" max="32767" attributes="0"/>
-                  <Component id="Aviso_L" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <Component id="cedCambiar_L" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
-                  <Component id="Aviso_L" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="cedCambiar_L" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="actCed_TF" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombres_L" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombresTF" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -119,12 +130,12 @@
                       <Component id="direccion_L" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="direccionTF" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="actualizar_B" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cancelarB" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -181,9 +192,11 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarBActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="Aviso_L">
+        <Component class="javax.swing.JTextField" name="actCed_TF">
+        </Component>
+        <Component class="javax.swing.JLabel" name="cedCambiar_L">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Actualice la informaci&#xf3;n del cliente, no deje ning&#xfa;n campo vac&#xed;o"/>
+            <Property name="text" type="java.lang.String" value="Ingrese la c&#xe9;dula del cliente al que quiere actualizar la informaci&#xf3;n"/>
           </Properties>
         </Component>
       </SubComponents>

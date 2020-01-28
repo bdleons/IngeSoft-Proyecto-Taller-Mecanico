@@ -5,6 +5,16 @@
  */
 package Frontera;
 
+import Control.ValidarRegistroC;
+import DAO.ClienteDAO;
+import DAO.VehiculoDAO;
+import Entidad.Cliente;
+import Entidad.Vehiculo;
+import static Frontera.RegistroCliente.clientes;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Marcos
@@ -16,6 +26,7 @@ public class ActualizacionCliente extends javax.swing.JFrame {
      */
     public ActualizacionCliente() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -40,7 +51,8 @@ public class ActualizacionCliente extends javax.swing.JFrame {
         nombresTF = new javax.swing.JTextField();
         actualizar_B = new javax.swing.JButton();
         cancelarB = new javax.swing.JButton();
-        Aviso_L = new javax.swing.JLabel();
+        actCed_TF = new javax.swing.JTextField();
+        cedCambiar_L = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +80,7 @@ public class ActualizacionCliente extends javax.swing.JFrame {
             }
         });
 
-        Aviso_L.setText("Actualice la información del cliente, no deje ningún campo vacío");
+        cedCambiar_L.setText("Ingrese la cédula del cliente al que quiere actualizar la información");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,42 +88,50 @@ public class ActualizacionCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cancelarB)
-                        .addGap(18, 18, 18)
-                        .addComponent(actualizar_B))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nombres_L)
-                                .addComponent(apellidos_L))
-                            .addGap(41, 41, 41)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nombresTF)
-                                .addComponent(apellidosTF, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(identificacion_L)
-                                .addComponent(telefono_L)
-                                .addComponent(direccion_L))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(identificacionTF)
-                                .addComponent(telefonoTF)
-                                .addComponent(direccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(cancelarB)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(actualizar_B))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(identificacion_L)
+                                        .addComponent(telefono_L)
+                                        .addComponent(direccion_L))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(direccionTF, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                                        .addComponent(identificacionTF)
+                                        .addComponent(telefonoTF))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombres_L)
+                                    .addComponent(apellidos_L))
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nombresTF)
+                                    .addComponent(apellidosTF, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(actCed_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(117, 117, 117))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(Aviso_L)
-                .addGap(35, 35, 35))
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(cedCambiar_L)
+                .addGap(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(Aviso_L)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
+                .addComponent(cedCambiar_L)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(actCed_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombres_L)
                     .addComponent(nombresTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,11 +151,11 @@ public class ActualizacionCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(direccion_L)
                     .addComponent(direccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(actualizar_B)
                     .addComponent(cancelarB))
-                .addGap(20, 20, 20))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,27 +178,58 @@ public class ActualizacionCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void actualizar_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizar_BActionPerformed
-       //Poner un dialog para digitar la cédula, poner clase control para actualizacionCliente y hacer la respectiva prueba unitaria
-        /* Cliente cliente = new Cliente();
+            
+        Cliente cliente = new Cliente();
+        Cliente clienteAct = new Cliente();
+        //Vehiculo vehiculo = new Vehiculo();
+        //Vehiculo vehiculoAct = new Vehiculo();        
+        ClienteDAO daoC = new ClienteDAO();
+        VehiculoDAO daoV = new VehiculoDAO();
+        List<Vehiculo> vehiculoLista1 =  new ArrayList<Vehiculo>();
+        List<Vehiculo> vehiculoLista2 =  new ArrayList<Vehiculo>();
+        //String ced = JOptionPane.showInputDialog("Ingrese la cédula del usuario que desea actualizar");         
+        String ced = actCed_TF.getText();
+        clienteAct = daoC.leer(Long.parseLong(ced));       
+        vehiculoLista1 = daoV.leer(Long.parseLong(ced)); //Recibe la lista que envía el método de los resultados en la base de datos
+        vehiculoLista2 = vehiculoLista1;
+        for(int i=0; i<vehiculoLista1.size(); i++){
+            vehiculoLista2.get(i).setCedDueño(Long.parseLong(identificacionTF.getText()));
+        }
+        //vehiculo = vehiculoAct;
+        //vehiculo.setCedDueño(Long.parseLong(identificacionTF.getText()));
         cliente.setNombres(nombresTF.getText());
         cliente.setApellidos(apellidosTF.getText());
         cliente.setCedula(Long.parseLong(identificacionTF.getText()));
         cliente.setTelefono(Long.parseLong(telefonoTF.getText()));
-        cliente.setDireccion(direccionTF.getText());
+        cliente.setDireccion(direccionTF.getText());        
         ValidarRegistroC verC = new ValidarRegistroC();
+        
         //System.out.println(verC.VerificarRegistro(cliente)); <<Banderilla
-        if(verC.VerificarRegistro(cliente).equals("Usuario registrado con exito")){
-            ClienteDAO dao = new ClienteDAO();
-            dao.crear(cliente);
-            clientes.add(cliente);
-            JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
-            RegistroVehiculo obj = new RegistroVehiculo();
+        if(verC.VerificarActualización(cliente, Long.parseLong(ced)).equals("Usuario registrado con exito")){   
+            daoC.actualizar(clienteAct, cliente);
+            for(int i=0; i< vehiculoLista1.size(); i++){
+                daoV.actualizar(vehiculoLista1.get(i), vehiculoLista2.get(i));
+            }            
+            //clientes.add(cliente);
+            JOptionPane.showMessageDialog(null, "Usuario actualizado con exito 1");
+            JOptionPane.showMessageDialog(null, "La info. de los vehículos del cliente también fue actualizada");
+            Menu obj = new Menu();
+            obj.setVisible(true);
+            this.dispose();
+        }
+        else if(Long.parseLong(identificacionTF.getText()) == Long.parseLong(ced) && verC.VerificarRegistro(cliente).equals("La cedula ya esta registrada")){
+            daoC.actualizar(clienteAct, cliente);
+            //daoV.actualizar(vehiculoAct, vehiculo);
+            //clientes.add(cliente);
+            JOptionPane.showMessageDialog(null, "Usuario actualizado con exito 2");
+            JOptionPane.showMessageDialog(null, "Usted no hizo cambios en la cédula, los vehículos mantienen su información");
+            Menu obj = new Menu();
             obj.setVisible(true);
             this.dispose();
         }
         else{
-            JOptionPane.showMessageDialog(null, verC.VerificarRegistro(cliente));
-        }*/
+            JOptionPane.showMessageDialog(null, verC.VerificarActualización(cliente, Long.parseLong(ced)));
+        }
 
     }//GEN-LAST:event_actualizar_BActionPerformed
 
@@ -224,11 +275,12 @@ public class ActualizacionCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Aviso_L;
+    private javax.swing.JTextField actCed_TF;
     private javax.swing.JButton actualizar_B;
     private javax.swing.JTextField apellidosTF;
     private javax.swing.JLabel apellidos_L;
     private javax.swing.JButton cancelarB;
+    private javax.swing.JLabel cedCambiar_L;
     private javax.swing.JTextField direccionTF;
     private javax.swing.JLabel direccion_L;
     private javax.swing.JTextField identificacionTF;

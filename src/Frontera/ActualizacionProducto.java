@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author Marcos
  */
-public class RegistroProducto extends javax.swing.JFrame {
+public class ActualizacionProducto extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegistroProducto
+     * Creates new form ActualizacionProducto
      */
-    public RegistroProducto() {
+    public ActualizacionProducto() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -41,7 +41,7 @@ public class RegistroProducto extends javax.swing.JFrame {
         nombreTF = new javax.swing.JTextField();
         cantidadTF = new javax.swing.JTextField();
         cancelarB = new javax.swing.JButton();
-        registrarB = new javax.swing.JButton();
+        actualizarB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +49,7 @@ public class RegistroProducto extends javax.swing.JFrame {
 
         nombreL.setText("Nombre:");
 
-        cantidadL.setText("Cantidad existente:");
+        cantidadL.setText("Cantidad nueva:");
 
         cancelarB.setText("Cancelar");
         cancelarB.addActionListener(new java.awt.event.ActionListener() {
@@ -58,10 +58,10 @@ public class RegistroProducto extends javax.swing.JFrame {
             }
         });
 
-        registrarB.setText("Registrar");
-        registrarB.addActionListener(new java.awt.event.ActionListener() {
+        actualizarB.setText("Actualizar");
+        actualizarB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarBActionPerformed(evt);
+                actualizarBActionPerformed(evt);
             }
         });
 
@@ -85,7 +85,7 @@ public class RegistroProducto extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cancelarB)
                         .addGap(18, 18, 18)
-                        .addComponent(registrarB)
+                        .addComponent(actualizarB)
                         .addGap(5, 5, 5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -104,10 +104,10 @@ public class RegistroProducto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadL)
                     .addComponent(cantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarB)
-                    .addComponent(registrarB))
+                    .addComponent(actualizarB))
                 .addContainerGap())
         );
 
@@ -131,39 +131,37 @@ public class RegistroProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registrarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBActionPerformed
-        Producto producto = new Producto();
-        producto.setCodigo(Integer.parseInt(codigoTF.getText()));
-        producto.setNombre(nombreTF.getText());
-        producto.setCantidad(Integer.parseInt(cantidadTF.getText()));               
-        ProductoDAO dao = new ProductoDAO();
-        ValidarRegistroP verP = new ValidarRegistroP();
-        if (verP.VerificarProducto(producto).equals("Producto correcto")){
-            dao.crear(producto);     
-            JOptionPane.showMessageDialog(null, "Producto registrado");
-            Menu obj = new Menu();
-            obj.setVisible(true);
-            this.dispose();
-        }
-        else if(verP.VerificarProducto(producto).equals("El código ya existe")){
-            int msg = JOptionPane.showConfirmDialog(null, "¿Desea actualiza el producto?", "El código ya existe", JOptionPane.YES_NO_OPTION);
-            if(msg == JOptionPane.YES_OPTION){
-                    ActualizacionProducto obj = new ActualizacionProducto();
-                    obj.setVisible(true);
-                    this.dispose();
-                }
-        }
-        else{
-           JOptionPane.showMessageDialog(null, verP.VerificarProducto(producto)); 
-        }
-        
-    }//GEN-LAST:event_registrarBActionPerformed
-
     private void cancelarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBActionPerformed
         Menu obj = new Menu();
         obj.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarBActionPerformed
+
+    private void actualizarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarBActionPerformed
+        Producto producto = new Producto();
+        ProductoDAO dao = new ProductoDAO();
+        Producto aux = new Producto();
+        int nuevaCantidad;
+        producto.setCodigo(Integer.parseInt(codigoTF.getText()));
+        producto.setNombre(nombreTF.getText());
+        producto.setCantidad(Integer.parseInt(cantidadTF.getText()));
+        aux = dao.leer(Integer.parseInt(codigoTF.getText()));
+        if(aux != null){
+            nuevaCantidad = aux.getCantidad() + Integer.parseInt(cantidadTF.getText());
+            producto.setCantidad(nuevaCantidad);
+        }        
+        ValidarRegistroP verP = new ValidarRegistroP();
+        if (verP.VerificarActualizacionProducto(producto).equals("Producto correcto")){
+            dao.actualizar(aux, producto);
+            JOptionPane.showMessageDialog(null, "Producto actualizado");
+            Menu obj = new Menu();
+            obj.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, verP.VerificarActualizacionProducto(producto));
+        }
+    }//GEN-LAST:event_actualizarBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,28 +180,26 @@ public class RegistroProducto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizacionProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizacionProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizacionProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizacionProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroProducto().setVisible(true);
+                new ActualizacionProducto().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualizarB;
     private javax.swing.JButton cancelarB;
     private javax.swing.JLabel cantidadL;
     private javax.swing.JTextField cantidadTF;
@@ -212,6 +208,5 @@ public class RegistroProducto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nombreL;
     private javax.swing.JTextField nombreTF;
-    private javax.swing.JButton registrarB;
     // End of variables declaration//GEN-END:variables
 }

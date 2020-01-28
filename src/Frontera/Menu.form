@@ -130,11 +130,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualizar info. cliente"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarC_BActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="actualizarP_B">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualizar info. Producto"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarP_BActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

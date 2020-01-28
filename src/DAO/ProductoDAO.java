@@ -8,7 +8,10 @@ package DAO;
 import Entidad.Producto;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -48,5 +51,87 @@ public class ProductoDAO {
             return ret;
         }
     }
-    
+    public Producto leer(Producto par) {
+        EntityManager em = emf.createEntityManager();
+        Producto producto = null;       
+        Query q = em.createQuery(" SELECT p FROM Producto p " + 
+                " WHERE p.codigo = :codigo")        
+                .setParameter("codigo", par.getCodigo());        
+        try {
+            producto = (Producto) q.getSingleResult();            
+        }catch (NoResultException e) {
+            return producto;
+        }
+        catch (NonUniqueResultException e) {
+            producto = (Producto) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return producto;
+        }                   
+    }
+    public Producto leer(int cod) {
+        EntityManager em = emf.createEntityManager();
+        Producto producto = null;       
+        Query q = em.createQuery(" SELECT p FROM Producto p " + 
+                " WHERE p.codigo = :codigo")        
+                .setParameter("codigo", cod);        
+        try {
+            producto = (Producto) q.getSingleResult();            
+        } catch (NoResultException e) {
+            return producto;
+        }
+        catch (NonUniqueResultException e) {
+            producto = (Producto) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return producto;
+        }                   
+    }
+    public Producto leerAct(Producto par) {
+        EntityManager em = emf.createEntityManager();
+        Producto producto = null;       
+        Query q = em.createQuery(" SELECT p FROM Producto p " + 
+                " WHERE p.codigo = :codigo" +
+                " AND p.nombre = :nombre")        
+                .setParameter("codigo", par.getCodigo())        
+                .setParameter("nombre", par.getNombre());
+        try {
+            producto = (Producto) q.getSingleResult();            
+        }catch (NoResultException e) {
+            return producto;
+        }
+        catch (NonUniqueResultException e) {
+            producto = (Producto) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return producto;
+        }                   
+    }
+    public boolean actualizar(Producto obj, Producto nuevoObj){
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            boolean ret = false;
+            try{
+                obj = leer(obj);
+                obj.setNombre(nuevoObj.getNombre());
+                obj.setCantidad(nuevoObj.getCantidad());
+                obj.setCodigo(nuevoObj.getCodigo());          
+                em.merge(obj);
+                em.getTransaction().commit();
+                ret = true;
+            }catch (Exception e){
+                e.printStackTrace();
+                em.getTransaction().rollback();
+            }finally{
+                em.close();
+                return ret;
+            }
+        } 
 }
+
