@@ -5,6 +5,8 @@
     <class>Entidad.Cliente</class>
     <class>Entidad.Producto</class>
     <class>Entidad.Vehiculo</class>
+    <class>Entidad.Factura</class>
+    <class>Entidad.Servicios</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/SI_Taller_Mec"/>
       <property name="javax.persistence.jdbc.user" value="grupo3"/>
