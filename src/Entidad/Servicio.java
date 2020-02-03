@@ -10,32 +10,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author NICOLAS
  */
 @Entity
-public class Servicios implements Serializable {
+@Table(name="servicios")
+public class Servicio implements Serializable {
     
-    private String codigo;
+    private int codigo;
     private String nombreservicio;
-    private double preciobase;
+    private String usoProducto;
+    private float precioBaseHora;
     
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    @Override
+    /*@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -58,16 +61,16 @@ public class Servicios implements Serializable {
     @Override
     public String toString() {
         return "Entidad.Servicios[ id=" + id + " ]";
+    }*/
+
+    public Servicio() {
     }
 
-    public Servicios() {
-    }
-
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
@@ -79,12 +82,20 @@ public class Servicios implements Serializable {
         this.nombreservicio = nombreservicio;
     }
 
-    public double getPreciobase() {
-        return preciobase;
+    public float getPrecioBaseHora() {
+        return precioBaseHora;
     }
 
-    public void setPreciobase(double preciobase) {
-        this.preciobase = preciobase;
+    public void setPrecioBaseHora(float preciobase) {
+        this.precioBaseHora = preciobase;
+    }
+
+    public String getUsoProducto() {
+        return usoProducto;
+    }
+
+    public void setUsoProducto(String usoProducto) {
+        this.usoProducto = usoProducto;
     }
     
     

@@ -1,6 +1,7 @@
 
 package Entidad;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="vehiculos")
-public class Vehiculo {
+public class Vehiculo implements Serializable {
     private String modelo;
     private String matricula;
     private String tipo_vehiculo;

@@ -1,6 +1,7 @@
 package Frontera;
 
 import Control.ValidarLoginE;
+import DAO.EmpleadoDAO;
 import Entidad.Edata;
 import Entidad.Empleado;
 import java.util.ArrayList;
@@ -133,7 +134,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         usuario.setPassword(contraseniaTF.getText());
         ValidarLoginE validar = new ValidarLoginE();
         String resultado = validar.verificarLogin(usuario);
-        if (resultado == "Bienvenido"){
+        if (resultado == "Bienvenido"){            
+            EmpleadoDAO daoE = new EmpleadoDAO();           
+            for(Empleado u:  sistema.getEmpleados()){
+                daoE.crear(u);
+            }
+                
             Menu obj=new Menu();
             obj.setVisible(true);
             this.dispose();

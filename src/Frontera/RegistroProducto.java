@@ -5,6 +5,7 @@
  */
 package Frontera;
 
+import Control.CalculoPrecioProducto;
 import Control.ValidarRegistroP;
 import DAO.ProductoDAO;
 import Entidad.Producto;
@@ -42,6 +43,8 @@ public class RegistroProducto extends javax.swing.JFrame {
         cantidadTF = new javax.swing.JTextField();
         cancelarB = new javax.swing.JButton();
         registrarB = new javax.swing.JButton();
+        precioL = new javax.swing.JLabel();
+        precioTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +68,8 @@ public class RegistroProducto extends javax.swing.JFrame {
             }
         });
 
+        precioL.setText("Precio de compra unitario:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -73,20 +78,28 @@ public class RegistroProducto extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreL)
-                            .addComponent(codigoL)
-                            .addComponent(cantidadL))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(codigoTF, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                            .addComponent(nombreTF)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cancelarB)
                         .addGap(18, 18, 18)
                         .addComponent(registrarB)
-                        .addGap(5, 5, 5)))
+                        .addGap(5, 5, 5))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cantidadL)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nombreL)
+                                .addComponent(codigoL)
+                                .addComponent(precioL))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(31, 31, 31)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(codigoTF, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                        .addComponent(nombreTF)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(precioTF, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -100,11 +113,15 @@ public class RegistroProducto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreL)
                     .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(precioL)
+                    .addComponent(precioTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadL)
                     .addComponent(cantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarB)
                     .addComponent(registrarB))
@@ -132,10 +149,14 @@ public class RegistroProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBActionPerformed
+        CalculoPrecioProducto calculo = new CalculoPrecioProducto();
+        float nuevoP = calculo.calcularPrecioProducto(Float.parseFloat(precioTF.getText()));
         Producto producto = new Producto();
         producto.setCodigo(Integer.parseInt(codigoTF.getText()));
         producto.setNombre(nombreTF.getText());
-        producto.setCantidad(Integer.parseInt(cantidadTF.getText()));               
+        producto.setPrecioCompra(Float.parseFloat(precioTF.getText()));//Poner excepcion por si no es tipo float        
+        producto.setPrecioVenta(nuevoP);
+        producto.setCantidad(Integer.parseInt(cantidadTF.getText()));            
         ProductoDAO dao = new ProductoDAO();
         ValidarRegistroP verP = new ValidarRegistroP();
         if (verP.VerificarProducto(producto).equals("Producto correcto")){
@@ -212,6 +233,8 @@ public class RegistroProducto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nombreL;
     private javax.swing.JTextField nombreTF;
+    private javax.swing.JLabel precioL;
+    private javax.swing.JTextField precioTF;
     private javax.swing.JButton registrarB;
     // End of variables declaration//GEN-END:variables
 }

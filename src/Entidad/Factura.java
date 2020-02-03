@@ -23,8 +23,8 @@ public class Factura implements Serializable {
     private long cedulacliente;
     private long idempleado;
     private ArrayList<Producto> productos;
-    private ArrayList<Servicios> servicios;    
-    private double precio;
+    private ArrayList<Servicio> servicios;    
+    private float precio;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,19 +98,19 @@ public class Factura implements Serializable {
         this.productos = productos;
     }
 
-    public ArrayList<Servicios> getServicios() {
+    public ArrayList<Servicio> getServicios() {
         return servicios;
     }
 
-    public void setServicios(ArrayList<Servicios> servicios) {
+    public void setServicios(ArrayList<Servicio> servicios) {
         this.servicios = servicios;
     }
 
-    public double getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
     

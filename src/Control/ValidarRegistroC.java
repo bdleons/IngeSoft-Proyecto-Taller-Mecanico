@@ -7,7 +7,6 @@ package Control;
 
 
 import DAO.ClienteDAO;
-import Entidad.Cdata;
 import Entidad.Cliente;
 import Frontera.RegistroCliente;
 

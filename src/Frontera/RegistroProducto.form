@@ -50,23 +50,36 @@
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nombreL" min="-2" max="-2" attributes="0"/>
-                              <Component id="codigoL" min="-2" max="-2" attributes="0"/>
-                              <Component id="cantidadL" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cantidadTF" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="codigoTF" pref="125" max="32767" attributes="0"/>
-                              <Component id="nombreTF" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
                           <Component id="cancelarB" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="registrarB" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="cantidadL" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="nombreL" min="-2" max="-2" attributes="0"/>
+                                  <Component id="codigoL" min="-2" max="-2" attributes="0"/>
+                                  <Component id="precioL" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="codigoTF" pref="125" max="32767" attributes="0"/>
+                                          <Component id="nombreTF" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cantidadTF" min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Component id="precioTF" min="-2" pref="125" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -86,12 +99,17 @@
                       <Component id="nombreL" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombreTF" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="precioL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="precioTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cantidadL" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cantidadTF" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cancelarB" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="registrarB" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,6 +156,13 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarBActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="precioL">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Precio de compra unitario:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="precioTF">
         </Component>
       </SubComponents>
     </Container>

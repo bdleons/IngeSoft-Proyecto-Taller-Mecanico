@@ -1,6 +1,7 @@
 
 package Entidad;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,10 +14,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="productos")
-public class Producto {
+public class Producto implements Serializable {
     private String nombre;
     private int cantidad;
-    private int codigo; //deuda técnica - manejo de excepciones, no necesidad de implementación DB en GUI
+    private int codigo; 
+    private float precioCompra; 
+    public float precioVenta;
     
 
     @Id
@@ -51,6 +54,22 @@ public class Producto {
   
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public float getPrecioCompra() {
+        return precioCompra;
+    }
+    
+    public void setPrecioCompra(float precio) {
+        this.precioCompra = precio;
+    }
+
+    public float getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(float precioVenta) {
+        this.precioVenta = precioVenta;
     }
        
 }

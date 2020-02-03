@@ -24,9 +24,11 @@ public class ValidarLoginE {
         } else {
         }
         for(Empleado u: sistema.getEmpleados()){
+            //System.out.println(u.getUser());
+            //System.out.println(u.getPassword());
             if(u.getUser().equals(emp.getUser()) && u.getPassword().equals(emp.getPassword())){
                 return ("Bienvenido");
-            }
+            }            
         }
         return ("Datos incorrectos");
     }

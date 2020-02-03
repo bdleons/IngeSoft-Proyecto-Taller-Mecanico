@@ -6,6 +6,8 @@
 package DAO;
 
 import Entidad.Producto;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -91,6 +93,26 @@ public class ProductoDAO {
             return producto;
         }                   
     }
+    public Producto leer(String tipoV) {
+        EntityManager em = emf.createEntityManager();
+        Producto producto = null;       
+        Query q = em.createQuery(" SELECT p FROM Producto p " + 
+                " WHERE p.nombre = :nombre")        
+                .setParameter("nombre", tipoV);        
+        try {
+            producto = (Producto) q.getSingleResult();            
+        } catch (NoResultException e) {
+            return producto;
+        }
+        catch (NonUniqueResultException e) {
+            producto = (Producto) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return producto;
+        }                   
+    }
     public Producto leerAct(Producto par) {
         EntityManager em = emf.createEntityManager();
         Producto producto = null;       
@@ -113,6 +135,20 @@ public class ProductoDAO {
             return producto;
         }                   
     }
+    public List<Producto> leer() { //guarda toda la búsqueda en una lista
+        EntityManager em = emf.createEntityManager();
+        List<Producto> producto =  new ArrayList<Producto>();       
+        Query q = em.createQuery("SELECT p FROM Producto p");                                                 
+        try {
+            producto = q.getResultList();  
+            System.out.println(q.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return producto;
+        }
+    }
     public boolean actualizar(Producto obj, Producto nuevoObj){
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -121,7 +157,9 @@ public class ProductoDAO {
                 obj = leer(obj);
                 obj.setNombre(nuevoObj.getNombre());
                 obj.setCantidad(nuevoObj.getCantidad());
-                obj.setCodigo(nuevoObj.getCodigo());          
+                obj.setCodigo(nuevoObj.getCodigo());   
+                obj.setPrecioCompra(obj.getPrecioCompra());
+                obj.setPrecioVenta(obj.getPrecioVenta());
                 em.merge(obj);
                 em.getTransaction().commit();
                 ret = true;
