@@ -37,6 +37,20 @@ public class Empleado implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
     
     
 }

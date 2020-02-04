@@ -55,8 +55,8 @@ public class FacturaDAO {
         EntityManager em = emf.createEntityManager();
         Factura factura = null;       
         Query q = em.createQuery(" SELECT u FROM Factura u " + 
-                " WHERE u.codigo = :codigo")        // se cambia 'LIKE' por '=' porque el primero parece sólo funcionar con parámetros enteros.                        
-                .setParameter("codigo", par.getCodigo());        
+                " WHERE u.Id = :Id")        // se cambia 'LIKE' por '=' porque el primero parece sólo funcionar con parámetros enteros.                        
+                .setParameter("Id", par.getId());        
         try {
             factura = (Factura) q.getSingleResult();            
         } catch (NoResultException e) {
@@ -97,7 +97,6 @@ public class FacturaDAO {
         try{
             obj = leer(obj);
             obj.setCedulacliente(nuevoObj.getCedulacliente());
-            obj.setCodigo(nuevoObj.getCodigo()); 
             obj.setIdempleado(nuevoObj.getIdempleado());
             obj.setPrecio(nuevoObj.getPrecio());            
             em.merge(obj);

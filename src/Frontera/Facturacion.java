@@ -5,12 +5,15 @@
  */
 package Frontera;
 
+import Control.CalculoPrecioServicio;
 import DAO.ClienteDAO;
+import DAO.EmpleadoDAO;
 import DAO.FacturaDAO;
 import DAO.ProductoDAO;
 import DAO.ServicioDAO;
 import DAO.VehiculoDAO;
 import Entidad.Cliente;
+import Entidad.Empleado;
 import Entidad.Factura;
 import Entidad.Producto;
 import Entidad.Servicio;
@@ -26,6 +29,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class Facturacion extends javax.swing.JFrame {
 
     DefaultComboBoxModel modeloClientes, modeloVehiculos, modeloUsoProd, modeloServ;
+    Empleado emp = new Empleado();
     /**
      * Creates new form Facturacion
      */
@@ -230,7 +234,7 @@ public class Facturacion extends javax.swing.JFrame {
                     .addComponent(mensaje5L, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mensaje4L))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(serviciosCBX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -314,6 +318,21 @@ public class Facturacion extends javax.swing.JFrame {
     }//GEN-LAST:event_clientesCBXActionPerformed
 
     private void validarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarBActionPerformed
+        
+        EmpleadoDAO emp1 = new EmpleadoDAO();
+        emp = emp1.leer(passwordPF.getText());
+        float precioservicio;
+        float precioproducto;
+        if(serviciosCBX.getSelectedItem().toString().equals("Sin servicio") ){
+          precioservicio = 0;  
+        }else{
+           /* VehiculoDAO veh = new VehiculoDAO();
+            ServicioDAO ser = new ServicioDAO();
+            Vehiculo veh1 = new Vehiculo();
+            veh1.setMatricula(vehiculosCBX.getSelectedItem().toString());
+            //veh.leer(veh1).getModelo();
+            CalculoPrecioServicio*/ 
+        }
         String aux = "Aquí va el precio";//Calcular el precio total con las clases control de calcular y asignar a la variable
         precioL.setText(aux);    
         panelSecundario.setVisible(true);
@@ -339,8 +358,7 @@ public class Facturacion extends javax.swing.JFrame {
         factura.setAutoCliente(vehiculosCBX.getSelectedItem().toString());
         factura.setServicioTomado(serviciosCBX.getSelectedItem().toString());
         factura.setProductoComprado(productosCBX.getSelectedItem().toString());
-        //factura.setCodigo(poner codigo, manual o auto);
-        //factura.setIdempleado(id tomado según la contraseña ingresada);
+        factura.setIdempleado(emp.getId());
         //Llenar el objeto factura con la información que se toma de la interfaz
         daoF.crear(factura);//crear el DAO con las respectivas restricciones de la clase control
     }//GEN-LAST:event_facturarBActionPerformed

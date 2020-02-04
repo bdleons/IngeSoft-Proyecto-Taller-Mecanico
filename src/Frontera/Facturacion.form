@@ -115,9 +115,9 @@
                       <Component id="mensaje4L" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="serviciosCBX" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="passwordPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="passwordPF" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="validarB" min="-2" max="-2" attributes="0"/>

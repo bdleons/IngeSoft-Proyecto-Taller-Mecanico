@@ -28,7 +28,7 @@ public class CalculoPrecioServicio {
         this.parametroCamioneta = (float) 2.3;
         this.parametroVPesado = (float) 2.67;
     }
-    public float calcularPrecioServicio(int numHoras, Servicio servicio, Vehiculo vehiculo){
+    public float calcularPrecioServicio( Servicio servicio, Vehiculo vehiculo){
         float precioTotal = 0;
         
         VehiculoDAO daoV = new VehiculoDAO();
@@ -39,41 +39,41 @@ public class CalculoPrecioServicio {
         switch(vehic.getTipo_vehiculo()){
             case "Auto":{
                 if(serv.getUsoProducto().equals("Ninguno")){
-                    precioTotal = parametroAuto * (float) numHoras * serv.getPrecioBaseHora();
+                    precioTotal = parametroAuto * serv.getPrecioBaseHora();
                 }else{
                     ProductoDAO daoP = new ProductoDAO();                    
                     Producto prod = daoP.leer(serv.getUsoProducto());
-                    precioTotal =  (parametroAuto * (float) numHoras * serv.getPrecioBaseHora() + prod.getPrecioVenta());
+                    precioTotal =  (parametroAuto * serv.getPrecioBaseHora() + prod.getPrecioVenta());
                 }
                 break;
             }
             case "Moto":{
                 if(serv.getUsoProducto().equals("Ninguno")){
-                    precioTotal = parametroMoto * (float) numHoras * serv.getPrecioBaseHora();
+                    precioTotal = parametroMoto  * serv.getPrecioBaseHora();
                 }else{
                     ProductoDAO daoP = new ProductoDAO();                    
                     Producto prod = daoP.leer(serv.getUsoProducto());
-                    precioTotal =  (parametroMoto * (float) numHoras * serv.getPrecioBaseHora() + prod.getPrecioVenta());
+                    precioTotal =  (parametroMoto  * serv.getPrecioBaseHora() + prod.getPrecioVenta());
                 }
                 break;
             }
             case "Camioneta":{
                 if(serv.getUsoProducto().equals("Ninguno")){
-                    precioTotal = parametroCamioneta * (float) numHoras * serv.getPrecioBaseHora();
+                    precioTotal = parametroCamioneta *  serv.getPrecioBaseHora();
                 }else{
                     ProductoDAO daoP = new ProductoDAO();                    
                     Producto prod = daoP.leer(serv.getUsoProducto());
-                    precioTotal =  (parametroCamioneta * (float) numHoras * serv.getPrecioBaseHora() + prod.getPrecioVenta());
+                    precioTotal =  (parametroCamioneta *  serv.getPrecioBaseHora() + prod.getPrecioVenta());
                 }
                 break;
             }
             case "Vehículo pesado":{
                 if(serv.getUsoProducto().equals("Ninguno")){
-                    precioTotal = parametroVPesado * (float) numHoras * serv.getPrecioBaseHora();
+                    precioTotal = parametroVPesado * serv.getPrecioBaseHora();
                 }else{
                     ProductoDAO daoP = new ProductoDAO();                    
                     Producto prod = daoP.leer(serv.getUsoProducto());
-                    precioTotal =  (parametroVPesado * (float) numHoras * serv.getPrecioBaseHora() + prod.getPrecioVenta());
+                    precioTotal =  (parametroVPesado *  serv.getPrecioBaseHora() + prod.getPrecioVenta());
                 }
                 break;
             }

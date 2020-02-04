@@ -60,4 +60,24 @@ public class EmpleadoDAO {
             return empleado;
         }
     }
+    public Empleado leer(String par) {
+        EntityManager em = emf.createEntityManager();
+        Empleado empleado = null;       
+        Query q;
+            q = em.createQuery(" SELECT e FROM Empleado e " + 
+                    " WHERE e.password = :password" )      // se cambia 'LIKE' por '=' porque el primero parece sólo funcionar con parámetros enteros.
+                    .setParameter("password", par);
+        try {
+            empleado = (Empleado) q.getSingleResult();            
+        } catch (NoResultException e) {
+            return empleado;
+        } catch (NonUniqueResultException e) {
+            empleado = (Empleado) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return empleado;
+        }
+    }
 }

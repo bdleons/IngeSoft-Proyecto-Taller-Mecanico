@@ -19,7 +19,6 @@ import javax.persistence.Id;
 @Entity
 public class Factura implements Serializable {
 
-    private String codigo; //buscar asignarle un código automático
     private long cedulacliente;
     private int idempleado; //tomar el id del empleado por medio de la contraseña buscando en la tabla empleados
     private String autoCliente;
@@ -67,14 +66,6 @@ public class Factura implements Serializable {
     }*/
 
     public Factura() {
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public long getCedulacliente() {
