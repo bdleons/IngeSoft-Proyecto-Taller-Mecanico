@@ -16,7 +16,7 @@ public class CalculoPrecioProducto {
     
     public float calcularPrecioProducto(float precioCompra){
         float precioVenta;
-        precioVenta = precioCompra + (precioCompra * (35/100));
+        precioVenta = (float) (precioCompra * 1.35);
         return precioVenta;
     }
     

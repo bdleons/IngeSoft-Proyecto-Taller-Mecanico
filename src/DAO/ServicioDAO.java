@@ -7,6 +7,8 @@ package DAO;
 
 
 import Entidad.Servicio;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -39,7 +41,7 @@ public class ServicioDAO {
     public Servicio leer(Servicio par) {
         EntityManager em = emf.createEntityManager();
         Servicio servicio = null;       
-        Query q = em.createQuery("SELECT s FROM Servicios s " + 
+        Query q = em.createQuery("SELECT s FROM Servicio s " + 
                 " WHERE s.nombreservicio LIKE :nombreservicio")                           
                 .setParameter("nombreservicio", par.getNombreservicio());        
         try {
@@ -48,6 +50,20 @@ public class ServicioDAO {
             return servicio;
         } catch (NonUniqueResultException e) {
             servicio = (Servicio) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return servicio;
+        }
+    }
+    public List<Servicio> leer() { //guarda toda la búsqueda en una lista
+        EntityManager em = emf.createEntityManager();
+        List<Servicio> servicio =  new ArrayList<Servicio>();       
+        Query q = em.createQuery("SELECT s FROM Servicio s ");                                                 
+        try {
+            servicio = q.getResultList();  
+            System.out.println(q.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

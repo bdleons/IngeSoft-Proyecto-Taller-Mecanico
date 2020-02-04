@@ -19,26 +19,29 @@ import javax.persistence.Id;
 @Entity
 public class Factura implements Serializable {
 
-    private String codigo;
+    private String codigo; //buscar asignarle un código automático
     private long cedulacliente;
-    private long idempleado;
-    private ArrayList<Producto> productos;
-    private ArrayList<Servicio> servicios;    
+    private int idempleado; //tomar el id del empleado por medio de la contraseña buscando en la tabla empleados
+    private String autoCliente;
+    private String servicioTomado;
+    private String productoComprado;
+    //private ArrayList<Producto> productos;
+    //private ArrayList<Servicio> servicios;    
     private float precio;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    @Override
+    /*@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -61,7 +64,7 @@ public class Factura implements Serializable {
     @Override
     public String toString() {
         return "Entidad.Factura[ id=" + id + " ]";
-    }
+    }*/
 
     public Factura() {
     }
@@ -82,15 +85,15 @@ public class Factura implements Serializable {
         this.cedulacliente = cedulacliente;
     }
 
-    public long getIdempleado() {
+    public int getIdempleado() {
         return idempleado;
     }
 
-    public void setIdempleado(long idempleado) {
+    public void setIdempleado(int idempleado) {
         this.idempleado = idempleado;
     }
 
-    public ArrayList<Producto> getProductos() {
+    /*public ArrayList<Producto> getProductos() {
         return productos;
     }
 
@@ -104,7 +107,7 @@ public class Factura implements Serializable {
 
     public void setServicios(ArrayList<Servicio> servicios) {
         this.servicios = servicios;
-    }
+    }*/
 
     public float getPrecio() {
         return precio;
@@ -113,6 +116,31 @@ public class Factura implements Serializable {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+
+    public String getAutoCliente() {
+        return autoCliente;
+    }
+
+    public void setAutoCliente(String autoCliente) {
+        this.autoCliente = autoCliente;
+    }
+
+    public String getServicioTomado() {
+        return servicioTomado;
+    }
+
+    public void setServicioTomado(String servicioTomado) {
+        this.servicioTomado = servicioTomado;
+    }
+
+    public String getProductoComprado() {
+        return productoComprado;
+    }
+
+    public void setProductoComprado(String productoComprado) {
+        this.productoComprado = productoComprado;
+    }
+    
     
     
 }

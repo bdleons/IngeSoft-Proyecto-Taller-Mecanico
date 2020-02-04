@@ -1,6 +1,8 @@
 package DAO;
 
 import Entidad.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -77,6 +79,20 @@ public class ClienteDAO {
             return cliente;
         }   catch (NonUniqueResultException e) {
             cliente = (Cliente) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return cliente;
+        }
+    }
+    public List<Cliente> leer() { //guarda toda la búsqueda en una lista
+        EntityManager em = emf.createEntityManager();
+        List<Cliente> cliente =  new ArrayList<Cliente>();       
+        Query q = em.createQuery("SELECT c FROM Cliente c");                                                 
+        try {
+            cliente = q.getResultList();  
+            System.out.println(q.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
