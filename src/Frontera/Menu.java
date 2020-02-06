@@ -91,6 +91,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         generarRepB.setText("Generar un reporte");
+        generarRepB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarRepBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -200,6 +205,12 @@ public class Menu extends javax.swing.JFrame {
         obj.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_facturarBActionPerformed
+
+    private void generarRepBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarRepBActionPerformed
+        Informes obj = new Informes();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_generarRepBActionPerformed
 
     /**
      * @param args the command line arguments
