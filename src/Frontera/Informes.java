@@ -37,6 +37,7 @@ public class Informes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         informeInventarioB = new javax.swing.JButton();
         inventarioOkB = new javax.swing.JButton();
+        informeFacturaB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Informes");
@@ -57,22 +58,31 @@ public class Informes extends javax.swing.JFrame {
             }
         });
 
+        informeFacturaB.setText("Informe de Facturas");
+        informeFacturaB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                informeFacturaBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(138, 138, 138))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(informeInventarioB)
-                        .addGap(87, 87, 87))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(inventarioOkB)
-                        .addGap(25, 25, 25))))
+                    .addComponent(informeFacturaB)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(138, 138, 138))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(informeInventarioB)
+                            .addGap(87, 87, 87))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(inventarioOkB)
+                            .addGap(25, 25, 25)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,7 +91,9 @@ public class Informes extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(59, 59, 59)
                 .addComponent(informeInventarioB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(informeFacturaB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(inventarioOkB)
                 .addContainerGap())
         );
@@ -113,6 +125,23 @@ public class Informes extends javax.swing.JFrame {
         obj.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_inventarioOkBActionPerformed
+
+    private void informeFacturaBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informeFacturaBActionPerformed
+        
+        contAccion++;
+        if (contAccion == 1) {
+            AgregarFiltro();
+        }
+
+        if (selecArchivo.showDialog(null, "Exportar") == JFileChooser.APPROVE_OPTION) {
+            archivo = selecArchivo.getSelectedFile();
+            if (archivo.getName().endsWith("xls") || archivo.getName().endsWith("xlsx")) {
+                JOptionPane.showMessageDialog(null, gInfo.ExportarFacturas(archivo));
+            } else {
+                JOptionPane.showMessageDialog(null, "Elija un formato valido.");
+            }
+        }        
+    }//GEN-LAST:event_informeFacturaBActionPerformed
 
     JFileChooser selecArchivo = new JFileChooser();
     File archivo;
@@ -160,6 +189,7 @@ public class Informes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton informeFacturaB;
     private javax.swing.JButton informeInventarioB;
     private javax.swing.JButton inventarioOkB;
     private javax.swing.JLabel jLabel1;

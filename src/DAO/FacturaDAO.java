@@ -6,6 +6,8 @@
 package DAO;
 
 import Entidad.Factura;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -87,6 +89,21 @@ public class FacturaDAO {
         } finally {
             em.close();
             return factura;
+        }
+    }
+    
+    public List<Factura> leer() { //guarda toda la búsqueda en una lista
+        EntityManager em = emf.createEntityManager();
+        List<Factura> facturas = new ArrayList<Factura>();
+        Query q = em.createQuery("SELECT u FROM Factura u");
+        try {
+            facturas = q.getResultList();
+            System.out.println(q.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return facturas;
         }
     }
     
