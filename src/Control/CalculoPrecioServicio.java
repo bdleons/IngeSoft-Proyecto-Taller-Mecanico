@@ -22,7 +22,7 @@ public class CalculoPrecioServicio {
     private final float parametroCamioneta;
     private final float parametroVPesado;
     
-    CalculoPrecioServicio(){
+    public CalculoPrecioServicio(){
         this.parametroAuto = (float) 1.94;
         this.parametroMoto = (float) 1.43;
         this.parametroCamioneta = (float) 2.3;

@@ -57,6 +57,44 @@ public class ServicioDAO {
             return servicio;
         }
     }
+    public Servicio leer(int cod) {
+        EntityManager em = emf.createEntityManager();
+        Servicio servicio = null;       
+        Query q = em.createQuery("SELECT s FROM Servicio s " + 
+                " WHERE s.codigo LIKE :codigo")                           
+                .setParameter("codigo", cod);        
+        try {
+            servicio = (Servicio) q.getSingleResult();            
+        } catch (NoResultException e) {
+            return servicio;
+        } catch (NonUniqueResultException e) {
+            servicio = (Servicio) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return servicio;
+        }
+    }
+    public Servicio leer(String nombreServ) {
+        EntityManager em = emf.createEntityManager();
+        Servicio servicio = null;       
+        Query q = em.createQuery("SELECT s FROM Servicio s " + 
+                " WHERE s.nombreservicio LIKE :nombreservicio")                           
+                .setParameter("nombreservicio", nombreServ);        
+        try {
+            servicio = (Servicio) q.getSingleResult();            
+        } catch (NoResultException e) {
+            return servicio;
+        } catch (NonUniqueResultException e) {
+            servicio = (Servicio) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return servicio;
+        }
+    }
     public List<Servicio> leer() { //guarda toda la búsqueda en una lista
         EntityManager em = emf.createEntityManager();
         List<Servicio> servicio =  new ArrayList<Servicio>();       

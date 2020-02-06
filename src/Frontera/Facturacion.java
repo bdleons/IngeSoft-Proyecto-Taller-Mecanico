@@ -6,6 +6,7 @@
 package Frontera;
 
 import Control.CalculoPrecioServicio;
+import Control.ValidarRegistroF;
 import DAO.ClienteDAO;
 import DAO.EmpleadoDAO;
 import DAO.FacturaDAO;
@@ -21,6 +22,7 @@ import Entidad.Vehiculo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
  *
@@ -97,7 +99,7 @@ public class Facturacion extends javax.swing.JFrame {
                 arregloServicios[i] = servicio.get(i).getNombreservicio(); 
                 modeloServ = new DefaultComboBoxModel(arregloServicios);
             }            
-        }        
+        }           
         serviciosCBX.setModel(modeloServ);
         
     }
@@ -143,6 +145,7 @@ public class Facturacion extends javax.swing.JFrame {
             }
         });
 
+        vehiculosCBX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin servicio" }));
         vehiculosCBX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vehiculosCBXActionPerformed(evt);
@@ -154,8 +157,26 @@ public class Facturacion extends javax.swing.JFrame {
         mensaje3L.setText("3. Elija el producto a facturar");
 
         productosCBX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        productosCBX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productosCBXActionPerformed(evt);
+            }
+        });
 
         mensaje4L.setText("4. Servicio");
+
+        serviciosCBX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin servicio" }));
+        serviciosCBX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serviciosCBXActionPerformed(evt);
+            }
+        });
+
+        passwordPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordPFActionPerformed(evt);
+            }
+        });
 
         mensaje5L.setText("<html>5.Contraseña empreado.<br/>Valide la transacción");
 
@@ -314,28 +335,48 @@ public class Facturacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clientesCBXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesCBXActionPerformed
-        cargarVehiculo();        
+        String[] auxSS = {"Sin servicio"};
+        modeloServ = new DefaultComboBoxModel(auxSS);
+        serviciosCBX.setModel(modeloServ);
+        cargarVehiculo();
+        panelSecundario.setVisible(false);
     }//GEN-LAST:event_clientesCBXActionPerformed
 
     private void validarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validarBActionPerformed
-        
-        EmpleadoDAO emp1 = new EmpleadoDAO();
-        emp = emp1.leer(passwordPF.getText());
-        float precioservicio;
-        float precioproducto;
-        if(serviciosCBX.getSelectedItem().toString().equals("Sin servicio") ){
-          precioservicio = 0;  
-        }else{
-           /* VehiculoDAO veh = new VehiculoDAO();
-            ServicioDAO ser = new ServicioDAO();
-            Vehiculo veh1 = new Vehiculo();
-            veh1.setMatricula(vehiculosCBX.getSelectedItem().toString());
-            //veh.leer(veh1).getModelo();
-            CalculoPrecioServicio*/ 
+        EmpleadoDAO daoE = new EmpleadoDAO();
+        emp = daoE.leer(passwordPF.getText());     
+        if(emp != null){
+            float precioServicio = 0, precioProducto = 0, precioTotal = 0;       
+            if(serviciosCBX.getSelectedItem().toString().equals("Sin servicio")){
+              precioServicio = 0;  
+            }else{
+                VehiculoDAO daoV = new VehiculoDAO();
+                ServicioDAO daoS = new ServicioDAO();
+                Vehiculo vehAux = new Vehiculo();
+                Servicio serAux = new Servicio(); 
+                CalculoPrecioServicio calculoServ = new CalculoPrecioServicio();
+
+                vehAux = daoV.leer(vehiculosCBX.getSelectedItem().toString()); //objeto que guarda el tipo de vehiculo
+                serAux = daoS.leer(serviciosCBX.getSelectedItem().toString());//objeto que guarda el tipo de servicio
+                precioServicio = calculoServ.calcularPrecioServicio(serAux, vehAux);
+            }
+            if(productosCBX.getSelectedItem().toString().equals("Sin producto")){
+                precioProducto = 0;
+            }
+            else{
+                ProductoDAO daoP = new ProductoDAO();
+                precioProducto = daoP.leer(productosCBX.getSelectedItem().toString()).getPrecioVenta();
+            }
+            precioTotal = precioServicio + precioProducto;        
+            String aux = String.valueOf(precioTotal);//Calcular el precio total con las clases control de calcular y asignar a la variable
+            precioL.setText(aux);    
+            panelSecundario.setVisible(true);
         }
-        String aux = "Aquí va el precio";//Calcular el precio total con las clases control de calcular y asignar a la variable
-        precioL.setText(aux);    
-        panelSecundario.setVisible(true);
+        else
+            JOptionPane.showMessageDialog(null, "La contraseña no es correcta");    
+
+        
+        
     }//GEN-LAST:event_validarBActionPerformed
 
     private void cancelarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBActionPerformed
@@ -360,12 +401,37 @@ public class Facturacion extends javax.swing.JFrame {
         factura.setProductoComprado(productosCBX.getSelectedItem().toString());
         factura.setIdempleado(emp.getId());
         //Llenar el objeto factura con la información que se toma de la interfaz
-        daoF.crear(factura);//crear el DAO con las respectivas restricciones de la clase control
+        ValidarRegistroF verF = new ValidarRegistroF();
+        if(verF.validarRegistro(factura).equals("Exito en registro de factura")){
+            daoF.crear(factura);
+            JOptionPane.showMessageDialog(null, "Transacción realizada exitosamente");
+            Menu obj = new Menu();
+            obj.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, verF.validarRegistro(factura));
+            panelSecundario.setVisible(false);
+        }
+        
     }//GEN-LAST:event_facturarBActionPerformed
 
     private void vehiculosCBXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiculosCBXActionPerformed
         cargarServicio();
+        panelSecundario.setVisible(false);
     }//GEN-LAST:event_vehiculosCBXActionPerformed
+
+    private void serviciosCBXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviciosCBXActionPerformed
+        panelSecundario.setVisible(false);
+    }//GEN-LAST:event_serviciosCBXActionPerformed
+
+    private void productosCBXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosCBXActionPerformed
+        panelSecundario.setVisible(false);
+    }//GEN-LAST:event_productosCBXActionPerformed
+
+    private void passwordPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordPFActionPerformed
 
     /**
      * @param args the command line arguments

@@ -38,23 +38,23 @@ public class ValidarRegistroC {
     return true;
     }
     
-    public boolean verificarLongitudCedula (long cedula){
+    private boolean verificarLongitudCedula (long cedula){
         return (cedula > 999 && cedula <= 999999999); // tamaño de 4 a 9 digitos
     }
     
-    public boolean verificarLongitudNombres (String nombre){
+    private boolean verificarLongitudNombres (String nombre){
         return (nombre.length() > 1 && nombre.length() <= 15);
     }
     
-    public boolean verificarLongitudApellidos (String apellidos){
+    private boolean verificarLongitudApellidos (String apellidos){
         return (apellidos.length() > 1 && apellidos.length() <= 15);
     }
 
-    public boolean verificarLongitudDireccion (String direccion){
+    private boolean verificarLongitudDireccion (String direccion){
         return (direccion.length() > 1 && direccion.length() <= 22);
     }
 
-    public boolean verificarLongitudTelefono (long telefono){
+    private boolean verificarLongitudTelefono (long telefono){
         return (telefono > 999999 && telefono <= 9999999); // 7 digitos
     }    
     

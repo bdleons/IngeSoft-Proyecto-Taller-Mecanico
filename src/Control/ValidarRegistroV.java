@@ -19,7 +19,7 @@ public class ValidarRegistroV {
     public ValidarRegistroV() {
     }
     
-    public boolean validarExitenciaCliente(long cedula){
+    private boolean validarExitenciaCliente(long cedula){
     for(Cliente u : clientes ){
             if(u.getCedula() == cedula){
                 return true; // en caso de que la cedula exista                
@@ -27,13 +27,13 @@ public class ValidarRegistroV {
         }
     return false;
     }
-    public boolean validarMatricula(Vehiculo vehiculo){
+    private boolean validarMatricula(Vehiculo vehiculo){
         if(dao.leer(vehiculo) != null)
             return false;
         return true;   
     }
     
-    public boolean validarLongitudMatricula(String matricula){
+    private boolean validarLongitudMatricula(String matricula){
         if(matricula.length()==6){
             return true;
         }

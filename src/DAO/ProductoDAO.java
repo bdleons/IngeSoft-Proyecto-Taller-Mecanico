@@ -93,12 +93,12 @@ public class ProductoDAO {
             return producto;
         }                   
     }
-    public Producto leer(String tipoV) {
+    public Producto leer(String nombreP) {
         EntityManager em = emf.createEntityManager();
         Producto producto = null;       
         Query q = em.createQuery(" SELECT p FROM Producto p " + 
                 " WHERE p.nombre = :nombre")        
-                .setParameter("nombre", tipoV);        
+                .setParameter("nombre", nombreP);        
         try {
             producto = (Producto) q.getSingleResult();            
         } catch (NoResultException e) {

@@ -17,30 +17,30 @@ public class ValidarRegistroS {
     
     public ValidarRegistroS(){        
     }
-    public boolean validarCodigoRepetido(Servicio serv){
-    if(dao.leer(serv) != null)
+    private boolean validarCodigoRepetido(int cod){
+    if(dao.leer(cod) != null)
         return false;
     return true;
     }
-    /*public boolean validarCodigoexistente(Servicio serv){
+    /*private boolean validarCodigoexistente(Servicio serv){
         if(dao.leer(serv) == null)
         return false;
     return true;
     }*/
-    public boolean validarLongitudCodigo(int serv){
+    private boolean validarLongitudCodigo(int serv){
         if(serv >9999 && serv <= 9999999){
             return true;
         }
         return false;
     }
-    public boolean validarLongitudNombre(String serv){
+    private boolean validarLongitudNombre(String serv){
         if(serv.length() >=2 && serv.length() <= 15){
             return true;
         }
         return false;
     }
     public String VerificarServicio(Servicio serviciocache){
-        if(!validarCodigoRepetido(serviciocache)){
+        if(!validarCodigoRepetido(serviciocache.getCodigo())){
             return("El código ya existe");
         }
         if(!validarLongitudCodigo(serviciocache.getCodigo())){

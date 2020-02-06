@@ -20,26 +20,14 @@ public class ValidarRegistroF {
 
     public ValidarRegistroF() {
     }
-    
-    public boolean validarExitenciaCliente(long cedula){
-    for(Cliente u : clientes ){
-            if(u.getCedula() == cedula){
-                return true; // en caso de que la cedula exista                
-            }
-        }
-    return false;
-    }
    
-    public boolean validarPrecio(double precio){
+    private boolean validarPrecio(float precio){
         return precio != 0;
     }
     
     public String validarRegistro(Factura facturacache){
-        if(!validarExitenciaCliente(facturacache.getCedulacliente())){
-            return "Cedula del cliente no esta registrada";
-        }
         if(!validarPrecio(facturacache.getPrecio())){
-            return "El precio de la factura es incorrecto";
+            return "El precio de la factura no puede ser 0";
         }
         return "Exito en registro de factura";
     }

@@ -72,6 +72,25 @@ public class VehiculoDAO {
             return vehiculo;
         }
     }
+    public Vehiculo leer(String matricula) {
+        EntityManager em = emf.createEntityManager();
+        Vehiculo vehiculo = null;       
+        Query q = em.createQuery(" SELECT v FROM Vehiculo v " + 
+                " WHERE v.matricula LIKE :matricula")                          
+                .setParameter("matricula", matricula);        
+        try {
+            vehiculo = (Vehiculo) q.getSingleResult();            
+        } catch (NoResultException e) {
+            return vehiculo;
+        }catch (NonUniqueResultException e) {
+            vehiculo = (Vehiculo) q.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            return vehiculo;
+        }
+    }
     public List<Vehiculo> leer(long cedDueño) {
         EntityManager em = emf.createEntityManager();
         List<Vehiculo> vehiculo =  new ArrayList<Vehiculo>();       

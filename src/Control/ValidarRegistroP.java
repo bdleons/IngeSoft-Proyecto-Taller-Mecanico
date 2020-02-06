@@ -17,29 +17,29 @@ public class ValidarRegistroP {
     
     public ValidarRegistroP() {
     }
-    public boolean validarCodigoRepetido(Producto prod){
+    private boolean validarCodigoRepetido(Producto prod){
     if(dao.leer(prod) != null)
         return false;
     return true;
     }
-    public boolean validarCodigoexistente(Producto prod){
+    private boolean validarCodigoexistente(Producto prod){
         if(dao.leer(prod) == null)
         return false;
     return true;
     }
-    public boolean validarCodigoAct(Producto prod){
+    private boolean validarCodigoAct(Producto prod){
         if(dao.leerAct(prod) == null)
         return false;
     return true;
     }
-    public boolean validarLongitudCodigo(int product){
+    private boolean validarLongitudCodigo(int product){
         if(product >9999 && product <= 9999999){
             return true;
         }
         return false;
     }
     
-    public boolean validarLongitudNombre(String product){
+    private boolean validarLongitudNombre(String product){
         if(product.length() >=2 && product.length() <= 15){
             return true;
         }
